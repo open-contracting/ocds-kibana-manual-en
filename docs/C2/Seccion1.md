@@ -1,48 +1,48 @@
-# Las herramientas Elastic
+# Elastic Tools
 
-## Introducción
+## Introduction
 
-Es un conjunto de herramientas que al combinarse crean una plataforma robusta de administración de datos permitiendo el monitoreo, consolidación y análisis de los mismos.
+It is a set of tools that, when combined, creates a data management platform that enables monitoring, consolidating and analyzing them.
 
-Las herramientas que componen este sistema son: ElasticSearch, Logstash y Kibana. Y por las iniciales de estos, el conjunto también es conocido como "stack ELK" o simplemente "ELK".
+This system contains the following tools: ElasticSearch, Logstash and Kibana. This set can be recognized as "stack ELK" or just "ELK". 
 
-Estas herramientas son creadas, mantenidas y distribuidas por la compañía [Elastic](https://www.elastic.co/) desde 2012 y han evolucionado según las necesidades del mercado. La primera de las herramientas en ser creada fue ElasticSearch en 2004 bajo el nombre de Compass, pero la primera versión oficial surge en 2010.
+These tools have been created, maintained and distributed by [Elastic](https://www.elastic.co/) since 2012 and have grown according to the market needs. The first tool created was ElasticSearch in 2004 under the name of Compass, but its first official version appeared in 2010.
 
-Elastic ofrece sus productos en dos modalidades:
-- Como software de código abierto, bajo la licencia Apache 2, salvo algunas funcionalidades adicionales que son distribuidas con licencia propietaria. Ofrece la oportunidad de ver, utilizar y hasta modificar las herramientas sin costo alguno, pero toda administración de las herramientas debe ser llevado a cabo personalmente.
-- Como servicio de pago, Elastic Cloud pone a disposición todas las herramientas y las funcionalidades adicionales en servidores administrados por ellos.
+Elastic offers two kinds of products:
+- Open source software, under Apache 2's license, with the exception of some additional features that are distributed with proprietary license. It offers the possibility to check, use and even modify the tools without any cost; but any modifications must be carried out by the user.
+- As a paid service, Elastic Cloud makes all the tools and additional features available in servers operated by the team.
 
-## Las ventajas de la plataforma ELK
+## Advantages of ELK platform
 
-Hay muchas soluciones distintas para cubrir la necesidad de procesamiento, monitoreo y visualización de datos, tanto de paga como libres, pero lo que distingue a ELK sobre otras es principalmente:
+ELK offers different solutions to meet the needs in data processing, monitoring and visualization. These solutions can be either paid or free, but what differentiates ELK from others is mainly:
 
-- **Potencia**: Ofrece mucha funcionalidad con un bajo costo técnico, las configuraciones son mínimas para empezar. Y las optimizaciones disponibles son amplias.
-- **Escalabilidad**: Elasticsearch es una herramienta diseñada para manejar terabytes de datos sin ningún problema. Su arquitectura le permite expandirse de forma rápida y fácil.
-- **Flexibilidad**: La configuración es flexible y puede adaptarse a cualquier necesidad y entorno.
-- **Apertura**: Elastic fomenta un ecosistema de extensiones (plugins) alrededor de sus herramientas que han creado un número importante de funcionalidades extras y gratuitas para facilitar el trabajo con ellas.
-- **Código Abierto**: Hoy en día el código abierto ofrece ventajas competitivas sobre otras plataformas porque permite la rápida corrección de errores gracias a la comunidad, la creación de extensiones e incluso incremente la base de usuarios al permitir utilizar las herramientas sin requerir pago alguno, lo que incrementa el conocimiento compartido de las herramientas.
+- **Capacity**: It offers many features that can be used in low-cost hardware. Minimum starting settings are needed and many optimizations are available. 
+- **Scalability**: ElasticSearch is a tool designed to manage TB of data. Its architecture enables it to expand quickly and easily.
+- **Flexibility**: The setting is flexible and it can adapt to any needs or environment.
+- **Access**: Elastic promotes plugins for its tools with free extra features in order to facilitate the use.
+- **Open Source**: Nowadays, open source offers competitive advantages over other platforms as it enables quick error corrections made by the community, extension corrections and even the user base extension. It allows the free use of tools, what increases the tools shared knowledge.
 
-## Los componentes
+## Components
 
-ELK está compuesta por tres pilares fundamentales: Elasticsearch, Logstash y Kibana.
+ELK consists of three essential pillars: ElasticSearch, Logstash and Kibana.
 
-![Plataforma ELK](elk.png "Plataforma ELK")
+![ELK Platform](elk.png "ELK Platform")
 
-Cada componente tiene una funcionalidad y arquitectura específica, veamos cómo se relacionan y cómo podemos usarlos como una plataforma.
+Each component has a specific feature and architecture. Hereunder, we will explain how they are related and how we can use them as a platform.
 
-## Arquitectura de la plataforma
+## Platform Architecture
 
-En este capítulo vamos a profundizar en el uso de las herramientas de Elastic para el análisis de datos de Contrataciones Abiertas en México. Para eso es necesario comprender mejor cómo se relacionan las diferentes herramientas antes de explicar cómo importaremos los datos.
+In this chapter, we will deepen the Elastic tools use to analyze Mexican Open Contracting data. For this, it is necessary to understand better how the different tools are related before we explain how we will import data.
 
-La plataforma ELK tiene una arquitectura lineal entre sus componentes.
+ELK platform has a linear architecture among its components.
 
 ![ELK Stack](elk_stack.jpg "ELK Stack")
 
-1. Los datos son recogidos y procesados por LogStash
-1. LogStash envía los datos ya procesados a ElasticSearch para ser indexados
-1. ElasticSearch proporciona los datos a la interfaz de Kibana para poder ser consultados
+1. Data is collected and processed by LogStash
+1. LogStash sends ElasticSearch already processed data to be indexed
+1. ElasticSearch provides Kibana interface with data to be browsed
 
-Pero veamos un poco más a detalle cada herramienta:
+Have a closer look at each tool:
 
 - [ElasticSearch](https://manualkibanaocds.readthedocs.io/es/latest/C2/Seccion1/1_ElasticSearch.html)
 - [Logstash](https://manualkibanaocds.readthedocs.io/es/latest/C2/Seccion1/2_Logstash.html)

@@ -1,27 +1,21 @@
-# Resumen
+# To sum up
 
-Llegados a este punto hemos logrado tomar, procesar y visualizar datos publicados por el Gobierno Mexicano sobre sus
-contrataciones, en este caso específico bajo el formato estándar de contrataciones abiertas (OCDS).
+Up to this point, we should have managed to take, process and visualize data published by the Mexican Government as regards to its contracts (here specifically with an OCDS standard).
 
-Los presentes apuntes aunque creados para este caso de uso pueden ser replicados para otros, resaltando la importancia
-de los fundamentos de la plataforma Elastic (ELK).
+Although the current concepts have been created for this case of use, they can be replicated for others, highlighting the importance of Elastic platform foundations.
 
-Procesar, Indexar y Visualizar cualquier conjunto de datos abiertos
-es posible con estos conocimientos básicos.
+It is possible to process, index and visualize any open dataset with this basic knowledge.
 
-A manera de resumen, recordemos los siguientes puntos.
+To sum up, we highlight the following concepts:
 
 ![Plataforma ELK](elk.png "Plataforma ELK")
 
-1. Existen 3 componentes de la plataforma ELK: ElasticSearch, Logstash y Kibana, cada uno con una tarea específica:
-    - ElasticSearch almacena e indexa la información, es "la base de datos".
-    - Kibana visualiza y ayuda a consultar la información.
-    - Logstash compila, transforma e inserta los datos originales en ElasticSearch.
-1. Una vez iniciado un servidor de ElasticSearch con Kibana podemos comenzar a enviar documentos al mismo para ser indexados.
-1. Logstash es una herramienta muy flexible para tomar una colección de datos, leerla, transformarla para finalmente enviarla
-a ElasticSearch.
-1. Logstash utiliza "Pipelines" para procesar los datos, éstos están compuestos de 3 partes: Entrada, Filtro, Salida.
-1. El Pipeline está escrito en un "lenguaje" propio que describe cada proceso de forma lógica y clara, con la flexibilidad
-disponible para realizar acciones complejas con instrucciones de código de programación.
-1. Una vez escrito el Pipeline éste puede ser usado múltiples veces, incluso para crear índices distintos dentro de un mismo
-servidor ElasticSearch.
+1. There are 3 components of ELK platform: ElasticSearch, Logstash y Kibana, each with a specific task:
+    - ElasticSearch stores and indexes information, it is the "database".
+    - Kibana visualizes and helps check the information.
+    - Logstash compiles, transforms and inserts the original data in ElasticSearch.
+1. Once we have started an ElasticSearch server with Kibana, we can start sending documents at the same time to be indexed.
+1. Logstash is a very flexible tool that can be used to take data collection, read it, transform it and later send it to ElasticSearch.
+1. Logstash uses "Pipelines" to process data. This is composed is divided in 3 parts: Input, Filter, Output.
+1. Pipeline is written in its own "language" and it describes each process logically and clearly, with flexibility to make complex actions with programming code instructions.
+1. Once the Pipeline is written, it can be used multiple times, even to create different indices in the same ElasticSearch server.

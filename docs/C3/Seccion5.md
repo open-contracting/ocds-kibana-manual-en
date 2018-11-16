@@ -1,7 +1,7 @@
-# Creación de Paneles (dashboard)
+# Dashboard creation
 
-Al tener toda una serie de gráaficas guardas que nos sirven para el análisis y con una fuente de entrada de datos constante, el dashboard nos permite hacernos tableros de control para ver como están entrando los datos. Su configuración es muy simple, solo hay que apretar el botón «Add», seleccionar las gráaficas y/o búsquedas que ya tenemos gravbadas y se mostraráan en el tablero, que podremos configurar a nuestro gusto.
+As we have saved a set of graphs that are useful to analyze and with a constant data input source, the dashboard enables us to create control panels to monitor the data entry. It has a very simple configuration. We only need to press the «Add» button, select the graphics and/or saved searches and everything will be displayed on the board (which we can configure as we like).
 
-Además (en la imagen está desplegado) tenemos un selector de tiempo para que rápidamente podamos seleccionar el intervalo de tiempo en el que tenemos interés.
+Moreover, we have an option to choose the time (as displayed in the image) and we can quickly choose the time interval we are interested in.
 
 !["Dashboard"](Dashboard.png "Dashboard")

@@ -1,38 +1,44 @@
 # Logstash
 
-Motor de recolección, procesamiento y redistribución de datos. Logstash es una herramienta muy valiosa cuando trabajamos con distintas fuentes de datos o con datos no centralizados. Podemos describir a Logstash como una máquina que toma datos de los lugares indicados (recolección), los transforma (procesamiento) y luego puede enviarlos a otros sistemas en un nuevo formato (redistribución).
+Data collection, processing and redistribution engine Logstash is a valuable tool to work with different data sources or decentralized data. We could describe Logstash as a machine that takes data from the indicated locations (collection), it transforms it (processing), and it can later send data to other systems in a new format (redistribution).
+
+
 
 ![Logstash](../logstash_001.png "Logstash")
 
-Estos tres pasos componen lo que se conoce como un "Pipeline" en Logstash.
+These three steps make what is known in Logstash as a Pipeline.
 
 ![Logstash Pipeline](../logstash_002.png "Logstash Pipeline")
 
-## Recolección de datos
 
-Logstash puede ser configurado de tal manera que puede observar una carpeta (u otro origen) de tal manera que cuando nuevos archivos de datos sean creados o cuando en los archivos especificados nuevos registros sean agregados, esta nueva información será leída de forma automática y enviada a procesamiento.
+## Data Collection
 
-Esto es de gran utilidad en sistemas que generan miles de registros por minuto (o segundo!) y toda esa información debe ser procesada y analizada.
+Logstash can be configured in a way to observe a folder (or another origin), and when new data files are created or when new records are added to the specified files, this new information will be automatically read and sent to be processed.
 
-En el caso de datos finales, donde tenemos una sola fuente de información, ya sea en uno o varios archivos, también es posible configurar Logstash para que estos sean leídos una sola vez.
+This is very useful in systems that create thousands of records per minute (or second) and all this information must be processed and analyzed.
 
-Para lograr esto, Logstash utiliza un sistema de extensión (plugins) de entrada: [Input Plugins](https://www.elastic.co/guide/en/logstash/current/input-plugins.html) que permiten leer información de muy diversas formas, formatos y sistemas.
+As regards to final data with only one information source with either one or many files, it is also possible to configure Logstash for them to be read just once.
 
-## Procesamiento de datos
+For achieving this, Logstash uses input plugins: [Input Plugins](https://www.elastic.co/guide/en/logstash/current/input-plugins.html, that allow us to read information in many different ways, formats and systems.
 
-Una vez que Logstash ha recolectado los nuevos datos, es posible decirle a Logstash que tipo de transformaciones queremos hacer sobre los datos. Podemos, por ejemplo, tomar datos en [CSV](https://es.wikipedia.org/wiki/Valores_separados_por_comas) y convertirlo en un documento [JSON](https://es.wikipedia.org/wiki/JSON), también podríamos tomar un archivo con un formato propio, no estandarizado y pasarlo a otro ya estandarizado.
+## Data Processing
 
-Para lograr esto, Logstash tiene a su disposición una colección de plugins llamados "filtros": [Filter plugins](https://www.elastic.co/guide/en/logstash/current/filter-plugins.html), cada filtro permite hacer una transformación especifica y pueden ser usados en combinaciones.
+Once Logstash has collected all new data, it is possible to give instructions to Logstash about the data transformations we want to make. For example, we can take data in [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) and turn it into  [JSON](https://en.wikipedia.org/wiki/JSON). We could also take a file with its own non-standardized format and turn it into another one already standardized.
 
-## Redistribución o Salida de datos
 
-Una vez que el Pipeline de Logstash ha recolectado y transformado la información podemos indicar que hacer con el resultado. Las opciones disponibles también son muy diversas, los nuevos datos ya procesados pueden ser enviados a nuevos archivos, o pueden ser enviados por correo, pero muy comúnmente la salida más utilizada es enviar esta información a una base de datos ElasticSearch.
 
-Las opciones oficiales de plugins de salida están listadas en esta página: [Output Plugins](https://www.elastic.co/guide/en/logstash/current/output-plugins.html)
+For achieving this, Logstash has at its disposal a set of plugins called "filter":  [Filter plugins](https://www.elastic.co/guide/en/logstash/current/filter-plugins.html). Each filter allows to make a specific transformation and can be used in combinations.
+
+## Redistribution or Data output
+
+Once the Logstash Pipeline has collected and transformed the information, we can indicate what to do with the result. We have many options: we can process new processed data to new files or data can be sent via e-mail, but the most commonly used output is to send this information to an ElasticSearch database.
+
+The official output plugins options are listed in this page: [Output Plugins](https://www.elastic.co/guide/en/logstash/current/output-plugins.html)
 
 ---
 
-**Nota sobre Logstash y ElasticSearch**
-Utilizar estas dos herramientas conjuntamente brinda muchos beneficios, pero cabe señalar que es posible enviar datos a ElasticSearch directamente **sin** usar Logstash.
-Esto se logra utilizando una funcionalidad de ElasticSearch conocida como "Ingesta" o "Ingest Pipeline", que convierte un nodo del clúster en un nodo especializado en recibir y procesar información.
-Sin embargo no ahondaremos en esta modalidad, ya que no se utiliza en este manual. Aunque es funcional, tiene opciones limitadas, además de agregar carga de procesamiento a nuestro clúster de ElasticSearch.
+**Note about Logstash and ElasticSearch** 
+
+Using these two tools together give many benefits, it has to be noted that we can send data directly to ElasticSearch **without** using Logstash.
+We can achieve this by using an ElasticSearch feature known as "Ingest" or "Ingest Pipeline", which turns the cluster node into a node specialized in information reception and processing.
+However, we will give no further details about this modality, given that it is not used in this manual. Although it is operating, it has limited options and our ElasticSearch cluster takes longer during processing.

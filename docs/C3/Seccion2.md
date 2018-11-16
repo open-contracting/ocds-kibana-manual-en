@@ -1,66 +1,66 @@
-# Descubrir (Discover)
+# Discover
 
-Tal y como su nombre indica, este primer apartado sirve para hacer una primera exploración de los datos. La pantalla de búsqueda está dividida en tres partes principales:
-* Un buscador 
-* Un mapeo de campos 
-* Un espacio de resultados
+As its name implies, this section is just for a first data research. The search screen is divided into three main parts:
+* A search engine  
+* A fields mapping  
+* A results space
 
 !["Discover"](discover.png "Discover")
 
-Las principales acciones tanto para buscar como para configurar la visualización de la pantalla, son:
-1. **Selector de índices**: En el desplegable se encuentran los distintos índices importados en la instancia de Kibana, este desplegable nos permite mover a través de ellos. Incluso algunos filtros se mantienen entre índices si hay campos coincidentes. 
-2. **Buscador**: Nos permite hacer toda una serie de preguntas sobre nuestra base de datos, una forma de ver si nuestra query está funcionado es comprobar el recuento de "hits" que aparece justo encima del buscador. Algunas de las queries más habituales que se pueden usar son:   
+The main actions to search and configure the screen visualization are:
+1. **Index Selector**: In the dropdown, you can find the different imported indexes in the Kibana instance. This dropdown enables us to move among them. Even some filters keep themselves among indices if there are match fields.
+2. **Search engine**: It allows us to ask many questions about our database. We can check if our query is working by checking the hits count that is just above the search engine. Some of the most common queries to use are:   
 
 <table border=1>
     <tr>
-        <th>Acción</td>
-        <th>Comando</td>
-        <th>Ejemplo</td>
+        <th>Action</td>
+        <th>Command</td>
+        <th>Example</td>
     </tr>
     <tr>
-        <td>Buscar en cualquier campo</td>
+        <td>Search in any field</td>
         <td>string</td>
         <td>México</td>
     </tr>
     <tr>
-        <td>Buscar en campo específico</td>
-        <td>campo:string</td>
+        <td>Search in specific field</td>
+        <td>field:string</td>
         <td>buyer.name:México</td>
     </tr>
     <tr>
-        <td>Buscar texto específico en campo específico</td>
+        <td>Search specific text in specific field</td>
         <td>campo:"string"</td>
-        <td>buyer.name:"Telecomunicaciones de México"</td>
+        <td>buyer.name:"Mexican Telecommunications"</td>
     </tr>
     <tr>
-        <td>Buscar dos textos en un campo</td>
-        <td>campo:("string" OR "string")</td>
-        <td>buyer.name:("Telecomunicaciones de México" OR " Tecnológico Nacional de México")</td>
+        <td>Search two texts in a field</td>
+        <td>field:("string" OR "string")</td>
+        <td>buyer.name:("Mexican Telecommunications" OR " Institute of Technology of Mexico")</td>
     </tr>
     <tr>
-        <td>Buscar en dos campos a la vez</td>
-        <td>campo:"string" AND campo:"string"</td>
-        <td>buyer.name:"Telecomunicaciones de México" AND tender.title:servicios</td>
+        <td>Search in two fields simultaneously</td>
+        <td>field:"string" AND field:"string"</td>
+        <td>buyer.name:"Mexican Telecommunications" AND tender.title:services</td>
     </tr>
     <tr>
-        <td>Más grande o más pequeño</td>
-        <td>campo:>valor</td>
+        <td>Bigger or smaller</td>
+        <td>field:>value</td>
         <td>contracts.value.amount:(>100000 AND <1000000)</td>
     </tr>
     <tr>
-        <td>Wildcards, valores desconocidos</td>
-        <td>c?mp*</td>
+        <td>Wildcards, unknown values</td>
+        <td>f?ield*</td>
         <td>M?xic*</td>
     </tr>
 </table>
 
-Para conocer más opciones repasar la documentación de [Query String Query](https://www.elastic.co/guide/en/elasticsearch/reference/6.x/query-dsl-query-string-query.html#query-string-syntax) y de [Lucene Query Syntax](https://www.elastic.co/guide/en/kibana/6.x/lucene-query.html).
+If you want to know more options, you can review this documentation: [Query String Query](https://www.elastic.co/guide/en/elasticsearch/reference/6.x/query-dsl-query-string-query.html#query-string-syntax) and [Lucene Query Syntax](https://www.elastic.co/guide/en/kibana/6.x/lucene-query.html).
 
-3. **Filtros**: Los filtros gráficos pueden hacer más o menos las mismas operaciones de filtro que acabamos de ver en el buscador, con la ventaja de que se pueden sumar varios filtros con facilidad y que hay una opción para editar el filtro y hacerlo mucho más complejo siguiendo [este tutorial](https://www.elastic.co/guide/en/elasticsearch/reference/6.x/query-filter-context.html). Si se están haciendo filtros sobre campos que contienen strings verán que aparecen duplicadas, una con el nombre definido y otra que termina en *.keyword*, se recomienda usar la segunda. 
+3. **Filters**: The graphical filters may do the same filter operations that we have just seen in the search engine, with the advantage that many filters can be easily added. We also have an option to edit the filter and make it much more complex following [this tutorial](https://www.elastic.co/guide/en/elasticsearch/reference/6.x/query-filter-context.html). If filters are done over fields with strings, you will notice they are duplicated. One with the defined name, while the other ends in *.keyword*. We recommend using the second one. 
 
-4. **Available fields**: La barra lateral sirve para poder inspeccionar las cabeceras de los datos, dar una primera visión de los datos que contienen y configurar el panel de resultados. 
-    * _Configuración_: La ruedita que está al lado de "Availaible Fields" despliega una serie de opciones para que se muestren más o menos campos. En caso de datos no tabulares, como los de OCDS, se aconseja desmarcar "Hide missing fields", para que se muestren los campos que están dentro de otros campos. 
-    * _Campos_: Todos los campos van acompañados de un símbolo que identifica el tipo de datos que contiene, el reloj cuando es temporal, el numeral o tecla gato para identificar numero, la "t" para identificar los textos o strings, un esfera mitad negra significa que el campo es un booleano, y el símbolo interrogante que desconoce que tipo de campo tiene, normalmente será porque contiene a su vez más campos a su interior. Al cliquear sobre un campo se desplegará un grafico que mapea los primeros 500 valores del campo. 
-    * _Add_: El botón add, que está iluminado por el círculo rojo, sirve para que el panel de resultados en lugar de mostrar toda la tira de datos muestre solo aquel o aquellos valores seleccionados. Por ejemplo podríamos usar el campo `tender.numberOfTenderers` que muestra el número de oferentes en cada proceso de contratación, y una vez lo tenemos en el espacio de resultados ordenarlo para poder ver que contratos tiene más contendientes. 
+4. **Available fields**: The sidebar can be used to inspect the data header, show a first view of the data it contains and configure the results panel. 
+    * _Configuration_: The wheel next to "Available Fields" displays a set of options to increase or decrease the fields you can see. In the case of non-tabular data, such as OCDS', it is advisable to unselect "Hide missing fields" in order to show the fields inside other fields. 
+    * _Fields_: All the fields come together with a symbol to identify the sort of data they contain: the clock when it is temporary, pound sign to identify numbers, the "t" to identify texts or strings, a half dark sphere means it is a Boolean field, and the question mark means the field type is unknown (generally because it contains more fields). When you click a field, a graphic that maps the first 500 field values will be displayed. 
+    * _Add_: The ADD button, which is lighted by a red circle, can be used for the results panel to just show those selected values instead of showing the whole dataset. For example, we could use the `tender.numberOfTenderers` field, which shows the number of suppliers in each contracting process. Once we have it among the results, we can organize them to see which contracts have more contenders. 
 
-5. **Save**: Como se dice al principio del apartado la opción visualizar en el apartado Discover sirve para una primera exploración, pero una vez ya conseguimos los resultados deseados podemos guardar esta búsqueda para graficarla o mandarla a un dashboard. 
+5. **Save**: As mentioned at the beginning of the section, the visualizing option in the Discover section can be used to first explore, but once we got the desired results, we can save this search to graph it or send it to a dashboard. 

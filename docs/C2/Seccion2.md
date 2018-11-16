@@ -1,74 +1,63 @@
-# Plataforma ELK para el Análisis de Contrataciones en formato OCDS
+# ELK Platforms to Analize OCDS format Contracting
 
-Como establecimos en la introducción de este manual, el análisis de los datos de contrataciones públicas de México es
-una tarea indispensable para la correcta fiscalización democrática de las operaciones gubernamentales.
+As stated in this manual's introduction, analyzing data of Public Contracting in Mexico is a key task for the government correct democratic scrutiny.
 
-Para lograr este análisis debemos contar con las herramientas tecnológicas para tomar el Estándar OCDS y ponerlo a
-disposición del público de una forma amigable que permita refinar la información así como crear visualizaciones de estos
-datos.
+To achieve this, we must have the right technological tools to make OCDS standard publicly available in a user-friendly way that enables everyone to provide more reliable information and create this data visualization.
 
-La plataforma ELK (ElasticSearch, Logstash, Kibana) proveé de las herramientas necesarias para lograr este objetivo.
+ELK platform (ElasticSearch, Logstash, Kibana) provides with all the necessary tools to achieve this goal.
 
-El presente manual permitirá realizar un sistema con las siguientes características:
+This manual allows you to create a system with the following characteristics:
 
-- Interfaz gráfica de uso amigable pero robusto para consultar los datos.
-- Un motor de búsqueda e indexado que permita la actualización y corrección de los datos en todo momento.
-- Un motor de ingesta de datos, que permita que según se realicen las publicaciones de los datos por parte del gobierno
-  mexicano éstos puedan ser procesados e ingresados a la base de datos con un mínimo esfuerzo.
+- User-friendly graphical interface but with sufficient capacity to check the database.
+- An indexed search engine that allows data update and correction at all times.
+- A data ingestion engine, which allows fast data entry to the database and data processing as the Mexican government publishes it.
 
-## Arquitectura
+## Architecture
 
-Cada una de estas funcionalidades estarán sustentadas en las herramientas Kibana, ElasticSearch y Logstash, y la
-arquitectura para su utilización quedará definida de la siguiente manera:
+Each of these features will be backed up by Kibana, ElasticSearch and Logstash. This is how the used architecture is defined:
 
-- Clúster ElasticSearch para indexar y contener los datos.
-    - Inicialmente el clúster tendrá un solo nodo, según la demanda lo indique se podría incrementar el número de nodos.
-    - Un índice especializado con los datos completos liberados.
-- Interfaz de Kibana para visualizar los datos en el índice.
-    - Tanto Kibana como ElasticSearch estarán inicialmente contenidos en un mismo contenedor Docker para su sencilla distribución.
-- Un pipeline para Logstash preparado para tomar los datos OCDS, procesarlos e indexarlos en ElasticSearch
-    - Este pipeline estará contenido en un contenedor Docker para su fácil ejecución.
+- ElasticSearch Cluster in order to index and contain data.
+    - Initially, the cluster will only allocate one node, but nodes could increase on demand.
+    - A specialized index with all data release.
+- Kibana Interface visualizes data in the table of contents.
+    - Kibana and ElasticSearch will be into the same Docker container to make an easier delivery.
+-  A Logstash pipeline ready to process OCDS data and index it in ElasticSearch
+    - This pipeline will be into a Docker container to run it more easily.
 
-!["Plataforma ELK"](arquitectura.png "Plataforma ELK")
+!["ELK Platform"](architecture.png "ELK Platform")
 
-Llamaremos **Contenedor Servidor** al que aloja a ElasticSearch y Kibana, ya que este contenedor se mantendrá en
-ejecución tanto tiempo como se quiera ofrecer este servicio.
 
-Y **Contenedor Procesador** al que solo ejecuta Logstash para procesar los datos y se da por terminado.
+We will name **Server Container** to the server hosting ElasticSearch and Kibana, as this container will be running as long as this service is offered.
 
-### Extra: Contenedores Docker
 
-Un contenedor Docker es una herramienta que utilizaremos para empaquetar nuestra solución, su arquitectura y las
-herramientas.
+And **Processor Container** to the one that only runs Logstash to process data.
 
-Este manual no contempla enseñar los detalles de Docker y su tecnología, pero podríamos definirlo de forma sencilla como
-"cajas" o "contenedores" (como de trailers o de barcos de carga) de Software donde va incluido absolutamente todo lo que
-necesitamos para ejecutar nuestro proyecto.
+### Extra: Docker Containers
 
-En teoría esto debería facilitar mucho la distribución de cualquier herramienta de Software pues el único prerequisito a
-instalar es Docker en sí mismo. Este paso debería ser muy parecido a instalar cualquier otro software en la plataforma
-de cómputo que se elija.
+We will use a Docker container to package our solution, its architecture and tools.
 
-Una vez instalado Docker, nuestro software estará listo para iniciarse automáticamente, sin necesitar de ningún tipo
-de software auxiliar ni dependencias.
+This manual does not teach details about Docker and its technology, but we can easily define it as
+Software "boxes" or "containers" (as those for trailers or cargo ships), where we store everything we need to implement our project.
 
-Otra ventaja de usar Docker es que mantiene estabilidad entre lo que se desarrolla y lo que se distribuye, se evitan
-problemas del tipo "funciona correctamente en mi computadora".
+This should make any Software tool distribution easier, as the only previous is to install Docker. This step should be similar to installing any other software in the chosen computing platform.
 
-> En las siguientes secciones utilizaremos diversos comandos de docker, entre los detalles más importantes se encuentra
-> el concepto de "volúmenes" que podriamos entender como "carpetas compartidas" entre el contenedor docker y nuestra computadora.
+Once you have Docker installed, our software is ready to start automatically, without any other software.
+
+Another advantage by using Docker is that it keeps stability between what is developed and what is distributed. You can avoid problems such as "it works correctly in my computer".
+
+> In the following sections, different docker commands will be used. Among the most important details, we have
+> the "Volumes" concept, which consists of "shared folders" between the container and our computer.
     ```
-    docker run -v CARPETA_LOCAL:CARPETA_DEL_CONTENEDOR imagen
+    docker run -v LOCAL_FOLDER:FOLDER_OF_CONTAINER image
     ```
-    La opción `-v A:B` le indica a docker que queremos compartir la carpeta `A` de nuestra computadora con el contenedor,
-    pero para el contenedor se llamará `B`
-    Un ejemplo:
+    Option `-v A:B` indicates docker that we want to share the `A` folder from our computer to the container, but it will be named `B` for the container.
+    An example:
     ```
-    docker run -v $HOME/Descargas:/input imagen
+    docker run -v $HOME/Downloads:/input image
     ```
-    "Comparte" la carpeta Descargas de mi computadora con el contenedor, dentro del contenedor la carpeta se llamará `/input`
+    "Share" Download folder from my computer to the container. Inside the container, the file's name will change to `/input`
 
-Para saber más sobre Contenedores y Docker, se recomiendan las siguientes lecturas:
-- [Amazon Web Services - Qué es Docker?](https://aws.amazon.com/es/docker/)
+To learn more about Containers and Docker, the following readings are recommended:
+- [Amazon Web Services - What is Docker?](https://aws.amazon.com/es/docker/)
 - [OpenWebinars - Docker](https://openwebinars.net/blog/docker-que-es-sus-principales-caracteristicas/)
-- [1and1.mx - Instalación de Docker](https://www.1and1.mx/digitalguide/servidores/configuracion/tutorial-docker-instalacion-y-primeros-pasos/)
+- [1and1.mx - Docker Installation](https://www.1and1.mx/digitalguide/servidores/configuracion/tutorial-docker-instalacion-y-primeros-pasos/)

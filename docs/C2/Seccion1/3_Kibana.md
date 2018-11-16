@@ -1,45 +1,49 @@
 # Kibana
 
-Si bien ElasticSearch y Logstash pueden ser consultados o invocados utilizando software programado a medida y comandos en el servidor para realizar consultas a los índices, es importante poner a disposición estas bases de datos a todo tipo de usuarios. Esa es la importancia de Kibana.
+Although ElasticSearch and Logstash can be queried or invoked using a tailored developed software and commands in the server to make queries to the indices, it is important to make these databases available to every kind of user. This is why Kibana is important.
 
-Kibana es la interfaz gráfica de usuario de la plataforma ELK. Y permite realizar análisis, consultas y visualizaciones de distintos tipos de los datos en nuestros índices.
+Kibana is the user graphic interface of ELK platform, and it allows to make analysis, queries and visualizations of different types of data in our indices.
 
-## Funcionalidades
+## Features
 
-### Explorar los datos (Discover)
+### Discover data
 
-Una de las funcionalidades más básicas de Kibana es poder explorar los datos, documento a documento, o mediante consultas especializadas.
+One of Kibana's most basic features is to explore data, document by document, or through specialized queries.
 
-!["Explorar los datos con Kibana"](../kibana_004.png "Explorar los datos con Kibana")
+!["Discover data with Kibana"](../kibana_004.png "Explore data with Kibana")
 
-Más adelante conoceremos más sobre el lenguaje ([Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/6.4/query-dsl.html)) que Kibana y ElasticSearch utilizan para la construcción de consultas más avanzadas.
+Later we will learn more about the language ([Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/6.4/query-dsl.html)) that Kibana and ElasticSearch use to build more advanced queries.
 
-### Visualizar los datos (Visualize)
 
-En esta función podremos crear gráficas, mapas y otro tipo de visualizaciones con los datos en nuestros índices.
+## Visualize data
 
-> Para realizar mapas, nuestros documentos deberían contener información como coordenadas geográficas. Para realizar gráficas con sumas o totales, nuestros documentos deberán contener datos numéricos.
+In this function, we can create graphs, maps and other type of visualizations with data in our indices.
 
-!["Visualizando los datos con Kibana"](../kibana_005.png "Visualizando los datos con Kibana")
+> To make maps, our documents should contain information such as geographical coordinates. Our documents should contain numeric data to make graphs with sums or totals.
 
-### Crear y compartir tables de información (Dashboard)
+!["Visualizing data with Kibana"](../kibana_005.png "Visualizing data with Kibana")
 
-Esta función es muy popular cuando ya tenemos definidos qué es lo que información queremos obtener de nuestros índices y de que forma queremos visualizarlo.
 
-Un Dashboard es una colección de visualizaciones que se actualizan en tiempo real y que pueden ser compartidas a usuarios fuera de la plataforma.
+## Create and share dashboards
 
-### Consola de desarrollo y otras funciones
+This function is popular when we have already defined what information we want to obtain from our indices and how we want to visualize it.
 
-Entre otras herramientas, Kibana también permite realizar consultas manuales sobre nuestros clústers e índices usando una consola de desarrollador, esta es una funcionalidad avanzada que puede servir para corrección de errores.
+A Dashboard is a set of visualizations that are updated in real time and that can be shared to users outside the platform.
 
-También, dependiendo de las configuraciones, puede exhibir un panel de administración de usuarios, índices y documentos. También permite monitorear el correcto funcionamiento de nuestra plataforma ELK por completo. 
 
-Algunas funcionalidades avanzadas requieren la compra de licencia a la empresa Elastic.co, en este manual trabajaremos sólo con las funcionalidades gratuitas disponibles en la versión libre de la plataforma ELK. 
+### Development console and other functions
 
-## Más ejemplos
+Among other tools, Kibana also allows us to make manual queries over our clusters and indices by using a developer's console. This is an advanced feature that can be used to fix errors.
 
-!["Interfaz Kibana"](../kibana_001.jpg "Interfaz Kibana")
+Also, depending on the configurations, it can show a user admin dashboard, indices and documents. We can also monitor completely the appropriate operation of our ELK platform. 
 
-!["Interfaz Kibana"](../kibana_002.jpg "Interfaz Kibana")
+Some advanced features require buying a license from Elastic.co. In this manual, we will only work with free features available in the ELK open source platform. 
 
-!["Interfaz Kibana"](../kibana_003.jpg "Interfaz Kibana")
+## More examples
+
+!["Kibana Interface"](../kibana_001.jpg "Kibana Interface")
+
+!["Interfaz Kibana"](../kibana_002.jpg "Kibana Interface")
+
+!["Interfaz Kibana"](../kibana_003.jpg "Kibana Interface")
+

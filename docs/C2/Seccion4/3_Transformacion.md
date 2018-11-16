@@ -1,6 +1,6 @@
-# Transformación (filter)
+# Transformation (filter)
 
-Este bloque le indica a Logstash qué debe hacer con cada uno de los registros que ha leido desde el modulo de Entrada.
+This block indicates Logstash what to do with each of the records read from Input module.
 
 ```
 filter {
@@ -15,44 +15,42 @@ filter {
 }
 ```
 
-Este puede ser el proceso más complicado del Pipeline, y también el más interesante y poderoso para nuestras tareas.
+This could be the Pipeline's most complicated process, and also the most interesting and powerful for our tasks.
 
-Este bloque se compone por una serie de filtros que actuan de forma secuencial, en este caso solo ocupamos un filtro: ruby
+This block is composed by a set of filters that behave sequentially. In this case, we will just use a filter: ruby
 
-### [Filtro Ruby](https://www.elastic.co/guide/en/logstash/current/plugins-filters-ruby.html)
+### [Ruby Filter](https://www.elastic.co/guide/en/logstash/current/plugins-filters-ruby.html)
 
-> Este filtro es más avanzado y requiere de conocimientos de programación en lenguaje Ruby.
+> This filter is more advanced and requires programming knowledge in Ruby language.
 
-El objetivo de esta sección es tomar de cada documento JSON recibido la propiedad `compiledRelease`, y a su vez, leer
-cada propiedad que lo compone, y copiarla sobre la raíz del documento.
+This section's objective is to take the `compiledRelease` property of each JSON file received and, in turn, read each property that composes it as well as copy it over the file root.
 
-**Ejemplo**
+**Example**
 ```
 {
   "compiledRelease": {
     "a": "A",
     "bc": [ "B", "C" ],
-    "tercero": {
+    "third": {
       "a": "3.A",
       "b": "3.B"
     }
   }
 }
 ```
-Sería transformado como:
+It would be transformed as:
 ```
 {
   "a": "A",
   "bc": [ "B", "C" ],
-  "tercero": {
+  "third": {
     "a": "3.A",
     "b": "3.B"
   }
 }
 ```
-Al final la propiedad `compiledRelease` es removida de la misma forma que `releases`, `host` y `path.
+At the end, the `compiledRelease` property is removed; in the same way as  `releases`, `host` and `path.
 
-## Importante
+## Important
 
-Al finalizar este bloque cada linea JSON ya habrá sido transformada en el formato deseado y estará aun almacenada en
-memoria de Logstash lista para ser enviada al siguiente bloque: La salida o [output](4_Salida.md)
+When this block is over, each JSON line should have been turned into the desired format and will still be stored in the Logstash memory, ready to be sent to the next block: Output [output](4_Salida.md)

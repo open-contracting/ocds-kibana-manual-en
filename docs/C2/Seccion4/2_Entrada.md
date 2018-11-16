@@ -1,6 +1,6 @@
-# Entrada (input)
+# Input
 
-Este componente le indica a Logstash de dónde y cómo leera los datos originales.
+This component indicates Logstash where and how to read the original data.
 
 ```
 input {
@@ -9,7 +9,6 @@ input {
   }
 }
 ```
-Para este pipeline hemos decidido leer el archivo desde la entrada estandar del programa, por cada linea de texto que
-reciba el programa esta será tratada como un documento JSON y almacenada en memoria para el siguiente paso.
+For this pipeline, we have decided to read the file from the program standard input. According to the text line the program receives, it will be treated as a JSON document and stored in memory for the following step.
 
-La transformación o filtro: [filter](3_Transformacion.md)
+Transformation or filter: [filter](3_Transformation.md)

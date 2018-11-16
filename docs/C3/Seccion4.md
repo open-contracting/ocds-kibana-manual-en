@@ -1,96 +1,96 @@
-# Visualizar (Visualize)
+# Visualize
 
-Kibana además de un gran buscador es un potente visualizador de datos, que nos permite crear y guardar gráficas de muchos tipos para el análisis de datos.
+Apart from a strong search engine, Kibana is a powerful data display that allows us to create and save different types of graphics for data analysis.
 
-Una vez entramos en el apartado visualizar nos aparece una tabla con las visualizaciones ya guardadas y un botón azul con un símbolo +; al cliquearlo nos aparece toda una serie de opciones para trabajar y visualizar datos. 
+Once you enter the visualization section, you can see a table with the already saved visualizations, and a blue button with a + symbol. When you click it, many options to work and visualize data will be displayed.  
 
-## Gráfico de barras
+## Bar Chart
 
-Los gráficos de barras sirven para comparar un mismo rango de datos (por ejemplo el importe total) en distintas instancias (en este caso las dependencias de gobierno). Al seleccionarlo llegamos a una pantalla como la siguiente con todos los valores vacíos.
+The bar charts are used to compare the same range of data (for example, the total amount) in different instances. In this case, the government departments.  When we click this, a screen as the following will appear, with all blank values.
 
-!["Gráfico Barras"](GBarras.png "Grafico Barras")
+!["Gráfico Barras"](BChart.png "Bar Chart")
 
-Para replicar el gráfico el proceso es:
-* **Y-Axis**
-  * *Agregation:* En este punto seleccionamos cómo se agregaran los datos en nuestro gráfico. Por defecto nos da "Count", pero para conseguir los valores totales hemos de seleccionar la opción "Sum" y se abre un nuevo desplegable llamado *Field* donde seleccionaremos `awards.value.amount`, que es el campo dónde está el valor de contrato.
-  * *Custom label:* Campo de personalización del gráfico.
-  * *Add metric:* El botón azul sirve por si queremos añadir otra métrica en el eje de la Y. Si quisiéramos hacer un gráfico con barras agrupadas deberíamos seguir por este camino. 
+This is the process to replicate the graphic: * **Y-Axis**
+  * *Aggregation:* At this stage, we will choose how data will be added to our graphic. By default, we get "Count", but we should choose the "Sum" option to achieve the total values. A new dropdown named "Field" will open, and we will select `awards.value.amount`, in which field we find the contract value.
+  * *Custom label:* The graphics's customization field.
+  * *Add metric:* The blue button can be used to add another metric to Y-axis. If we wanted to make a grouped bar graph, we should follow this:
 
-* **Buckets / X-Axis** - Aunque hay otras dos opciones **Split Series** y **Split Chart** para realizar este gráfico nos quedaremos con la primera opción.
-  * *Agregation:* Nos abre un desplegable con múltiples opciones, seleccionaremos "Terms" y aparecerá una serie de campos.
-  * *Field*: Seleccionamos la opción `buyer.name.keyword` (observarán que no hay la opción sin keyword).
-  * *Order by*: Ordenaremos por "metric.Sum of awards.value.amount", el valor que pusimos en el inicio, aunque también podríamos ordenar alfabéticamente o definir otro orden de la base de datos. 
-  * *Order*: Seleccionaremos "Descending" para que aparezcan los mayores primeros. Si hubiéramos seleccionado otro *Orden by* las opciones se modificarían. 
-  * *Size*: El número de valores que vamos a mostrar en el gráfico, 20 es un valor razonable
-  * *Custom label:* Campo de personalización del gráfico.
+* **Buckets / X-Axis** - Although you have two other options to make this graph: **Split Series** and **Split Chart**, you will use the first option.
+  * *Aggregation:* It opens a dropdown with many options. Choosing "Terms" brings up a number of fields.
+  * *Field*: S*: We must choose the `buyer.name.keyword` option (you will notice there is no option without keyword).
+  * *Order by*: You will order by "metric.Sum of awards.value.amount", the value we set initially, although you could order alphabetically or define another order for the database. 
+  * *Order*: You will select "Descending" for the higher values to appear first. If you had selected a different option in *Order by*, the options would have been modified. 
+  * *Size*: For the values we will show you in the graph, 20 is a reasonable value.
+  * *Custom label:* The graphics's customization field.
+  
+When you have the panel complete, you should click play (button with blue background) and the graph will be displayed on screen. You can modify the different options to analyze in detail. 
 
-Cuando ya tenemos todo el panel completo hemos de darle al botón de play en el recuadro azul y el gráfico aparecerá en la pantalla. Podemos modificar las distintas opciones para analizar a profundidad. 
+## Pie Chart
 
-## Gráfico de tarta
+We can use the pie charts to know each element's weight (contracting procedures) out of the set (all the dataset).
 
-Los gráficos de tarta para saber qué peso tiene cada uno de los elementos (procedimientos de contratación) sobre el conjunto (todo el dataset).
+!["Pie chart"](Pchart1.png "Pie chart")
 
-!["Grafico de tarta"](GTarta1.png "Grafico de tarta")
-
-Para replicar el gráfico el proceso es:
+This is the process to replicate the graph:
 * **Metrics**
-  * *Agregation:* Dejaremos seleccionada el "Count"
+  * *Aggregation:* We will leave "Count" selected
 
-* **Bucket / Splits Slices** ya que nos interesa generar los espacios de la tarta y no crear varias gráficas de tarta. 
-  * *Agregation:* Otra vez Terms
+* **Bucket / Splits Slices** given that we are interested in creating the pie's slices instead of creating several pie charts.  
+  * *Aggregation:* Terms again
   * *Field*: `tender.procurementMethod.keyword`
   * *Order by*: "Count"
   * *Oder* Descent
-  * *Size*: Dejamos 5 aunque son tres. 
+  * *Size*: We leave 5 even though there are three. 
   
-Le damos al "play" y aparecerá el gráfico. Pero una vez visualizado queremos ver cuáles son las dependencias que más han usado este dataset para y para esto hemos de cliquear al botón con letra azul "Add sub-buckets" que está en el apartado de Buckets. Una vez allí repetiremos el proceso.
+You click "play" and a graph will be displayed. But once visualized, we want to know which departments have used this dataset more times. Therefore, we need to click the "Add sub-buckets" button that is in the Buckets section. Once there, we need to repeat the process.
 
 * **Bucket / Splits Slices**
-  * *Agregation:* Otra vez Terms
+  * *Aggregation:* Terms again
   * *Field*: `buyer.name.keyword`
   * *Order by*: "Count"
   * *Oder* Descent
-  * *Size*: Dejamos 5 aunque son tres. 
+  * *Size*: We leave 5 even though there are three. 
 
-Cuando le demos al play nos saldrá esta gráfica con las 5 dependencias que más veces han echo ese tipo de contratación en el dataset. 
+When we click play, this graphic containing the 5 departments that more times have done this kind of contracting in the dataset will be displayed. 
 
-!["Grafico de tarta2"](GTarta2.png "Grafico de tarta2")
+!["Pie char2t"](PChart2.png "Pie Chart2")
 
-Siguiendo con el análisis queremos ahora cambiar el agregado, no queremos que sea cuenta sino importe total por procedimiento y dependencia. 
+Moving on with the analysis, we can pretend we want to change the aggregation. Instead of count, we want it to be the total amount per procedure per department.  
 * **Metrics**
-  * *Agregation:* seleccionaremos la opción de "Sum" y en el nuevo desplegable *Field* seleccionaremos `awards.value.amount`
+  * *Aggregation:* We will select the "Sum" option, and in the new *Field¨* dropdown, we will choose `awards.value.amount`
+  
+We click play again, which shows us the following graph.
 
-Le volvemos a dar al play y nos da la siguiente gráfica.
+!["Pie Chart 3"](PChart3.png "Pie chart3")
 
-!["Grafico de tarta3"](GTarta3.png "Grafico de tarta3")
+We can continue analyzing, adding and removing values. In order to speed up the process, we have three buttons next to each "Split Slices" text that allow us to "Display/hide", "Change order of appearance" and "Delete slice". Every time we make a change, we need to click the play button. 
 
-Podemos seguir analizando, añadiendo y quitando valores. Para acelerar el proceso, al lado de cada "Split Slices", hay tres botones que permiten hacer la acciones "Mostrar/esconder", "modificar el orden de aparición" y "borrar el slice". Cada vez que se hace una modificación hay que apretar el botón de play. 
+## Line Chart
 
-## Gráfico de líneas
+Line charts allow us to show the evolution over time. In this occasion, we will make a graph with two values: count and value. 
 
-Los gráficos de líneas nos sirven para mostrar la evolución durante el tiempo; en esta ocasión haremos un gráfico con dos valores: cuenta e importe. 
-
-!["Grafico de lineas"](Glineas.png "Grafico de lineas")
+!["Line Chart"](LChart.png "Line chart")
 
 * **Metrics**
-  * *Agregation:* seleccionaremos la opción de "Sum" y en el nuevo desplagable *Field* seleccionaremos `awards.value.amount`
-  * Cliquearemos en *Add metric*
-  * *Agretation:* Dejaremos seleccionada el "Count"
+  * *Aggregation:* We will choose the "Sum" option and `awards.value.amount` in the new *Field* dropdown
+  * We will click *Add metric*
+  * *Aggregation:* We will leave "Count" selected.
   
-* **Buckets / X-Axis** - Aunque hay otras dos opciones **Split Series** y **Split Chart** para realizar este gráfico nos quedaremos con la primera opción.
-  * *Agregation:* Esta vez seleccionaremos "Date Histogram", ya que queremos hacer una serie temporal.
-  * *Field:* Usaremos el campo `awards.contractPeriod.endDate`, la fecha en la que se otorga el contrato.
-  * *Interval:* Seleccionaremos "Monthly", ya que nuestro dataset contiene datos de tres años. 
+* **Buckets / X-Axis** - Although you have two other options to make this graph: **Split Series** and **Split Chart**, you will use the first option.
+  * *Aggregation:* This time we will select "Date Histogram" as we want to make a time series.
+  *Field:* We will use the  `awards.contractPeriod.endDate`, the date when the contract is awarded.
+  * *Interval:* We will select "Monthly" as our dataset contains 3-year data. 
   
-Si le diéramos play ahora, el gráfico quedaría solo con la línea verde, y la azul quedaría rozando al 0, ya que los valores entre ambas son muy distintos. Para que esto aparezca bien, hemos de crear un segundo eje de valores en la gráfica. Para esto hemos de hacer clic en *Metrics & Axes* (el menú a la izquierda del botón play) y en el desplegable "Value Axis" elegir la opción "New Axis", que nos generará un nuevo eje que podemos editar en la siguiente caja **Y-Axis**.
+If we pressed play now, the graph would just have the green line, and the blue one would be near 0 as the values between them are very different. We should create a second ax of values in the graph for a good display. For this, we should click *Metrics & Axes* (the dropdown located to the left of play button) and in "Value Axis" dropdown, we should choose "New Axis". This will create a new ax we can edit in the following **Y-Axis** box.
 
-Observando el gráfico podemos ver que termina en el 2020, cuando aún estamos en 2018. Para rectificar esto, podemos añadir un filtro a los datos, de la misma forma que lo hacemos en el apartado [Discover](https://manualkibanaocds.readthedocs.io/es/latest/C3/Seccion2.html) 
+If we observe the graphic, we can notice it ends in 2020, when we are still in 2018. We can add a filter to the data in order to amend this, as we do in [Discover](https://manualkibanaocds.readthedocs.io/es/latest/C3/Seccion2.html). 
 
 
-## Otros gráficos disponibles
+## Other graphs available
 
-En Kibana hay muchas más opciones de crear gráficos, todos ellos con funcionamientos muy similares a los anteriormente descritos. Algunos recomendados son:
-* **Tablas**: Permiten generar nuevas tablas y exportarlas a csv.
-* **Área**: para valores acumulados en el tiempo.
-* **Mapas**: cuando tenemos valores geográficos.
-* **Redes**: Explorar las relaciones entre los distintos campos. 
+In Kibana, we have many more options to create graphs. All of them with performances very similar to the previously described. Some recommended ones are: 
+
+* **Tables**: It allows us to create new tables and export them to csv.
+* **Area**: This is for values accumulated over time.
+* **Maps**: This is for geographical values.
+* **Networks**: This is to explore the links between different fields.

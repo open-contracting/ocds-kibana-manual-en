@@ -1,53 +1,55 @@
 # ElasticSearch
 
-Es un motor de base de datos distribuida tolerante a fallos y de alta disponibilidad.
+It is a distributed database engine which is fault-tolerant and with high availability.
 
-Esto significa que la herramienta sirve para almacenar, indexar, filtrar y mostrar datos. Esta diseñada para continuar su funcionamiento ante la falla de equipos, ya que se puede organizar como una "red de nodos". Es decir, una misma base de datos puede estar replicada en múltiples computadoras conectadas en red, y los datos contenidos pueden estar compartidos en todos los nodos, ya sea de forma integra o "en pedazos" a los que se denomina "data shards" o "shards".
+This means that the tool can be used to store, index, filter and show data. It is designed to continue operating whenever you find an equipment failure, as it can be organized as a "nodes network". That is, the same database can be copied in multiple computers connected to the network, and the data they contain may be shared among these nodes, either fully or in data shards (also shards).
 
-![Base de datos distribuida](../distributed_database.jpg "Base de datos distribuida")
+![Distributed database](../distributed_database.jpg "Distributed database")
 
-Esta arquitectura distribuida permite que una base de datos en ElasticSearch siga funcionando aún cuando uno o varias de las computadoras que componen la red (nodos) deje de funcionar, y que los nodos puedan estar en diferentes ubicaciones físicas para lograr una velocidad uniforme del mismo sistema en diferentes ubicaciones.
+This distributed architecture enables an ElasticSearch database to continue working even when one or two computers composing the network (nodes) stop working. It also allows the nodes to be in different physical locations to achieve a constant speed of the same system in different locations.
 
-De la misma forma en que ElasticSearch distribuye la información, también distribuye el procesamiento de consultas de datos. Cuando se realiza una búsqueda en la base de datos y esa información se encuentra distribuida, será tarea de cada nodo procesar dicha consulta y devolver la información que tenga disponible. Al final, el sistema en su conjunto creará un resultado final conjuntando los segmentos devueltos por cada nodo.
+In the same way ElasticSearch distributes information, it also distributes the data query processing. When we make a database search and this information is distributed, each node has the task of processing this query and return the available information. In the end, the system as a whole will create the final result, joining the segments given by each node.
 
-Esto permite que un sistema basado en ElasticSearch y configurado apropiadamente pueda realizar consultas complejas, en grandes cantidades de datos conservando un excelente rendimiento para el usuario final, más allá de su ubicación.
+For this reason, a system based in ElasticSearch and appropriately configured can make complex queries with large amounts of data, and still keep a high performance for the final user, beyond the location.
 
-## Conceptos de ElasticSearch
+## ElasticSearch Concepts
 
-### Cúmulo (Clúster)
+### Clúster
 
-Al conjunto de nodos en ElasticSearch se le conoce como "clúster", un clúster puede tener uno o más nodos. Un clúster tendrá un nombre único, y los nodos reconocerán el clúster al que pertenecen por este nombre. Es completamente válido tener un clúster con un solo nodo, y esto resulta mucho más sencillo de configurar, por lo que será el ejemplo elegido en este manual.
+A cluster is a set of nodes in ElasticSearch, it can have one or more nodes. A cluster will have a unique name, and the nodes will recognize the cluster they belong to by its name. It is completely possible to have a cluster with just one node. This is much simpler to configure and this is why it will be the chosen example in this manual.
 
 ![ElasticSearch Cluster](../elasticsearch_001.png "ElasticSearch Cluster")
 
-### Nodo (Node)
+### Node
 
-Un nodo es un "servidor" de ElasticSearch, normalmente esto se traduce en una sola computadora.
-Cada nodo tendrá un nombre único e irrepetible en el clúster.
+A node is an ElasticSearch "server", it commonly means one computer.
+Each node will have a unique name in the cluster.
 
-### Índice (Index)
 
-En ElasticSearch las bases de datos se conocen como Índices, un índice funciona parecido a los viejos índices de biblioteca y contienen referencias a una colección de documentos que comparten ciertas características.
-Un índice también tiene un nombre único, y se le puede o no definir las características de los documentos antes de agregar los documentos.
+### Index
 
-Por ejemplo, se puede tener un índice "clientes" que referencia a una seria de documentos con datos personales de los clientes de una tienda, todos tendrán un nombre, una dirección, edad, etc.
+In ElasticSearch, databases are known as Indices. One of them works similarly to the old library Indices and it contains references to a set of documents that share certain characteristics.
+An index also has a unique name, and we may define or not the documents' characteristics before adding the documents.
 
-De la misma forma se puede tener, en el mismo clúster ElasticSearch otro índice "productos", que contendrá documentos describiendo cada uno de los productos que se venden en esa tienda.
+For example, we can have a "customers" index, which makes reference to a set of documents with a store's customers' personal data, All of them will have a name, address, age, etc.
 
-A estos índices se pueden hacer consultas, actualizaciones, borrado o agregado de datos usando el nombre correspondiente.
+In the same way, we can have in the same ElasticSearch cluster a "products" index, which will contain documents describing each product being sold in this store.
 
-### Documento (Document)
+We can make queries and updates to these Indices as well as adding or deleting data from them by using the corresponding name.
 
-La unidad básica de información de ElasticSearch es el Documento, y estos documentos son almacenados en formato [JSON](https://es.wikipedia.org/wiki/JSON) lo que ofrece una flexibilidad y simplicidad para guardar cualquier tipo de datos.
 
-A la acción de "guardar datos" en la base de datos ElasticSearch se le conoce como "indexar datos" o "indexar documentos"
+## Document
 
-### Fragmento (Shard)
+The Elastic Search's information base unit is the Document. They are stored in  [JSON](https://es.wikipedia.org/wiki/JSON) format, which makes it more flexible and simple to save any type of data.
 
-> El más técnico de los conceptos aquí presentados pero es importante para entender como funciona un Indice de ElasticSearch.
+We "index data" or "index documents" when we "save data" in ElasticSearch database.
 
-Un índice puede contener mucha más información de la que es posible almacenar físicamente en una sola computadora o de la que sería eficiente procesar en una sola computadora. Para solucionar este problema, ElasticSearch puede subdividir los índices en fragmentos más pequeños llamados "shards".
+## Shard
 
-Esta función es la que le permite a ElasticSearch ser eficiente con cantidades de datos monumentales, pues subdividiendo el índice permite que se puedan agregar más nodos al clúster y los documentos pueden estar distribuidos entre todos los nodos.
+> This is the most technical concept here introduced, but it is important to understand how an ElasticSearch Index works.
 
-En su forma más básica podemos tener un solo shard, aunque no es una práctica recomendada, pero esa será una decisión que deberemos tomar según la cantidad de datos a indexar y la cantidad de recursos disponibles. Para más información podemos consultar: [¿Cuántos shards debo tener en mi cluster de Elasticsearch?](https://www.elastic.co/blog/cuantos-shards-debo-tener-en-mi-cluster-de-elasticsearch)
+An index may contain much more information than it is possible to store physically or efficient to process in just a computer. ElasticSearch can divide the Indices into smaller fragments called "shards" as to solve this problem.
+
+This function allows ElasticSearch to be efficient with huge quantity of data, as subdividing the index, we can add more nodes into the cluster, and documents can be distributed in the different nodes.
+
+Although we do not recommend it, in its more basic form, we can have just one shard. We should make this decision according to the amount of data to index and the available resources. For more information, please check: [How many shards should I have in my ElasticSearch cluster](https://www.elastic.co/blog/cuantos-shards-debo-tener-en-mi-cluster-de-elasticsearch)

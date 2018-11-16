@@ -1,15 +1,15 @@
 # Extras
 
-## Crear muestras de archivos originales
+## Create original files samples
 
-Para la creacion de archivos mas pequenos y manejables se ha usado [shuf](https://en.wikipedia.org/wiki/Shuf)
+We have used [shuf](https://en.wikipedia.org/wiki/Shuf) to create smaller and handier files creation.
 
-Como:
+Such as:
 ```
-shuf -n NUMERO_ENTRADAS_DESEADAS -o OUTPUTFILE INPUTFILE
+shuf -n DESIRED_INPUT_NUMBER -o OUTPUTFILE INPUTFILE
 ```
 
-Ejemplo:
+Example:
 ```
 shuf -n 1000 -o sample.csv full.csv
 ```

@@ -1,191 +1,181 @@
-# Puesta en marcha de la Plataforma ELK para el Análisis de Contrataciones en formato OCDS
+# Starting up ELK Platform to Analize OCDS format Contracting
 
-Al final de esta sección tendremos todo lo necesario para hacer consultas y visualizaciones sobre los datos de Contrataciones en formato OCDS.
+At the end of this section, you will have all you need to check and visualize OCDS format Contracting data.
 
-Para una mejor comprensión de esta sección se recomienda tener familiaridad básica con la terminal de comandos:
+In order to have a better understanding of this section, it is recommended to be familiar with the command terminal:
 
 * [Mac](https://www.soydemac.com/abrir-terminal-mac/)
 * [Windows](https://www.wikihow.com/Open-the-Command-Prompt-in-Windows)
 * [Linux/Ubuntu](https://elblogdeliher.com/como-moverse-por-los-directorios-en-la-terminal-de-ubuntu/)
 
-## Objetivos
+## Goals
 
-1. Iniciar un servidor ElasticSearch con Kibana.
-1. Cargar los datos publicados de Contrataciones en un formato sencillo de consultar.
-1. Realizar una consulta sobre los datos.
+1. Starting an ElasticSearch server with Kibana.
+1. Uploading the Contracting published data in a format that is easy to check.
+1. Checking data.
 
-El presente proyecto está desarrollado para poder iniciar los 3 servicios, según sea necesario de forma fácil y rápida.
+The current project is developed in order to start the 3 services easily and quickly.
 
 
-## Prerequisitos
+## Prerequisites
 
-1. Abrir la terminal para comandos del Sistema Operativo
-1. [Instalar Docker CE](https://docs.docker.com/install/)
-1. [Instalar Docker Compose](https://docs.docker.com/compose/install/)
-1. [Descargar el archivo que contiene las
-   herramientas](https://github.com/ProjectPODER/ManualKibanaOCDS/archive/master.zip)
-1. Descomprimir el archivo descargado y entrar a la carpeta que se acaba de crear
-    * En la terminal: `cd ManualKibanaOCDS-master`
+1. Open the Operative System's command terminal
+1. [Install Docker CE](https://docs.docker.com/install/)
+1. [Install Docker Compose](https://docs.docker.com/compose/install/)
+1. [Download the file containing the
+   tools](https://github.com/ProjectPODER/ManualKibanaOCDS/archive/master.zip)
+1. Unzip the downloaded file and access the folder that has just been created
+    * In the terminal: `cd ManualKibanaOCDS-master`
 
-## Iniciar el *Contenedor Servidor* con ElasticSearch y Kibana
+## Start *Server Container* with ElasticSearch and Kibana
 
-Ahora podremos iniciar el servidor ejecutando el siguiente comando en la terminal:
+Now we can start the server by executing the following command in the terminal:
 ```
 docker-compose -f elastic-kibana.yaml up
 ```
-> Este comando le indica al programa Docker que debe crear un contenedor según lo indicado en el archivo
-> `elastic-kibana.yaml`, en el mismo indicamos que ambos programas deben iniciarse.
+> This command indicates Docker program to create the container shown in the file
+> `elastic-kibana.yaml`, here we specify both programs should start.
 
-Pasados unos minutos, depende de los recursos disponibles, deberíamos poder abrir en el navegador web la dirección
-[http://localhost:5601/app/kibana](http://localhost:5601/app/kibana) y Kibana se mostrará disponible.
+After some minutes, depending on available resources, we should be able to open this link
+[http://localhost:5601/app/kibana](http://localhost:5601/app/kibana) and Kibana should appear as available.
 
-A partir de este momento ElasticSearch y Kibana están listos para ser usados. Aunque aún no tenemos datos disponibles.
+From now on, ElasticSearch and Kibana will be ready to use, even though we still do not have available data.
 
-## Cargar los datos OCDS a ElasticSearch
+## Upload OCDS data to ElasticSearch
 
-Para este proceso debemos posicionarnos en la carpeta `elk-gobmx-csv-master/pipeline`, en la
-terminal:
+For this process, we should be placed in the folder `elk-gobmx-csv-master/pipeline`, in the terminal:
 ```
 cd pipeline
 ```
 
-### Descargando los paquetes de datos
+### Downloading data packages
 
-Si queremos trabajar con el total de los contratos publicados en estándar OCDS sin importar los últimos datos
-publicados, lo primero que debemos hacer es asegurarnos de haber descargado el archivo de **Contrataciones en formato
-OCDS por paquetes json** publicado en el sitio
+If we want to work with all the Contracts published in OCDS standard without taking into account the last data published,
+we should first be sure we have downloaded **Contracts in OCDS format by package.json**, published in the website
 [datos.gob.mx](https://datos.gob.mx/busca/dataset/concentrado-de-contrataciones-abiertas-de-la-apf/resource/ed1ec7e5-61ae-4d00-8adc-67c77844e75c)
-> Al 2 de Septiembre de 2018 este archivo lleva por nombre `contratacionesabiertas_bulk_paquetes.json.zip` y tiene un
-tamaño de 310.5 MB aproximadamente.
+> On September 2 2018 , this file's name is `contratacionesabiertas_bulk_paquetes.json.zip` and its size is about 310.5 MB.
 
-Es importante mencionar que el formato de esta información se conoce en el estándar OCDS como [recordPackages](http://standard.open-contracting.org/latest/en/schema/record_package/) o [paquete de Registros](http://standard.open-contracting.org/latest/es/schema/record_package/); las herramientas y código incluidas en éste manual utilizan este formato, para utilizar alguno otro como *releases* o *releasePackages* o alguna otra estructura no definida por el estándar OCDS serían necesarias modificaciones al código.
+It is important to mention that this information is recognized with OCDS standard through the following format
+[recordPackages](http://standard.open-contracting.org/latest/en/schema/record_package/) or [Record Package](http://standard.open-contracting.org/latest/es/schema/record_package/); all tools and codes included in this manual use this format. In order to use another one, such as *releases* or *releasePackages*, or another structure non-defined by OCDS standard, it would be required to modify the code.
 
-> Estos archivos pueden ser bastante grandes en tamaño, es recomendable tener por lo menos 2GB libres de espacio en
-> disco duro antes de continuar.
+> As these files can have a big size, it is recommended to have at least 2GB available in
+> the hard disk to continue.
 
-Ahora debemos descomprimir el archivo `contratacionesabiertas_bulk_paquetes.json.zip`, esto generará múltiples archivos
-`.json` dentro de una carpeta:
+Now, we need to unzip `opencontracting_bulk_packages.json.zip` file, which will create multiple
+`.json` files inside a folder:
 ```
-carpeta/contratacionesabiertas_bulk_paquete1.json
-carpeta/contratacionesabiertas_bulk_paquete2.json
-carpeta/contratacionesabiertas_bulk_paquete3.json
+folder/opencontracting_bulk_packages.json
+folder/opencontracting_bulk_packages2.json
+folder/opencontracting_bulk_packages3.json
 ...
 ```
 
-**IMPORTANTE:** Debemos saber la ruta completa de esta carpeta con los archivos .json, pues será necesaria para el paso de carga.
+**IMPORTANT:** We must know the full file path of .json files to this folder, as it will be necessary for the upload stage.
 
-A manera de ejemplo asumamos que los archivos fueron descargados y descomprimidos dentro de la carpeta de Descargas del
-sistema operativo. La ruta completa a esta carpeta **debería ser**
+As an example, suppose that the files were downloaded and unzipped inside the same operative system Download file. Files path to this folder **should be**
 [<sup>1</sup>](https://en.wikipedia.org/wiki/Home_directory#Default_home_directory_per_operating_system)
 
-* **Linux/Ubuntu/Mac**: `/home/{nombre de usuario}/Descargas`
-    Se puede abreviar como `$HOME/Descargas`
-* **Windows**: `C:\Users\{nombre de usuario}\Descargas`
-    Se puede abreviar como `%HOMEPATH%\Descargas`
+* **Linux/Ubuntu/Mac**: `/home/{username}/Download`
+    We can shorten it as `$HOME/Download`
+* **Windows**: `C:\Users\{username}\Download`
+    We can shorten it as `%HOMEPATH%\Download`
 
-Al confirmar esto u obtener la ruta completa de la carpeta con los archivos `.json` podemos continuar.
+When it is confirmed or we could get the path to the files folder, we can continue.
 
-## Procesando y cargando los datos
+## Processing and uploading data
 
-### IMPORTANTE
-**El proceso actual carga específicamente la parte `compiledRelease` de cada documento OCDS, esto en
-función de poder realizar el análisis sobre la ultima versión disponible de los *releases* OCDS, se recomienda leer los
-capítulos anteriores antes de proceder**
+### IMPORTANT
+**The current process specifically upload the `compiledRelease` part of each OCDS document, based on analyzing the last version available among OCDS *releases*. We recommend to read previous chapters before continuing**
 
-En esta misma carpeta tenemos disponible otra herramienta diseñada para la carga de los datos, que
-también hace uso de un contenedor Docker. Usaremos dos comandos unicamente: el primero para preparar el contenedor, el
-segundo para ejecutarlo.
+In this same folder, we have another tool designed for data upload. It also uses a Docker container. We will just use two commands: the first one is to get the container ready and the second one to execute it.
 
 ```
 docker build . -t logstash-sfp-compranet-ocds:latest
 ```
-> Con este comando Docker estará preparando el contenedor con todo lo necesario para procesar y cargar los datos.
+> With this command, Docker will make the container ready with everything necessary to process and upload data.
 
-Una vez finalizado, podemos ejecutar el proceso de carga según el sistema operativo disponible.
+Once finished, we can execute the upload process according to the available operating system.
 
 **Linux/Ubuntu o Mac**
 ```
-docker run --net="host" -v $HOME/Descargas:/input logstash-sfp-compranet-ocds
+docker run --net="host" -v $HOME/Download:/input logstash-sfp-compranet-ocds
 ```
 **Windows**
 ```
-docker run --net="host" -v %HOMEPATH%\Descargas:/input logstash-sfp-compranet-ocds
+docker run --net="host" -v %HOMEPATH%\Download:/input logstash-sfp-compranet-ocds
 ```
-> Este comando utilizará el contenedor preparado con anterioridad ejecutando el proceso y carga de los datos. Para
-> mayores detalles puede consultar la [documentación técnica](https://github.com/ProjectPODER/ManualKibanaOCDS/tree/master/pipeline) de este
-> proceso.
+>This command will use the container that is already executing the data processing and upload. For more information, please check the [technical documentation](https://github.com/ProjectPODER/ManualKibanaOCDS/tree/master/pipeline) of this
+> process.
 
-La pantalla ahora debe mostrar información del proceso. Esto puede tomar algunos minutos.
+The screen now must show the process information. This could take some minutes.
 
-Al finalizar exitosamente deberemos ver la leyenda: `Carga finalizada` y `Kibana esta listo`.
+After finishing everything successfully, this caption should pop up: `Upload successfully complete` and `Kibana is ready to use`.
 
-Ahora podremos visitar la pagina de [Kibana](http://localhost:5601/app/kibana) y consultar ver los datos cargados.
+Now, we can visit [Kibana] web page(http://localhost:5601/app/kibana) and see all data uploaded.
 
 ---
 
-Para conocer más sobre los detalles técnicos de como logramos hacer la carga de los datos, en la siguiente sección
-hablaremos de como utilizamos LogStash para este proceso.
+To know more about technical details on how to upload data, we will explain next how to use LogStash for this process.
 
-### Extra: Descargando los datos OCDS directo de la API de datos.gob.mx
+### Extra: Download OCDS data directly from datos.gob.mx API
 
-Anteriormente se explicó cómo descargar el conjunto completo de los datos en OCDS mediante un sólo archivo, en esta
-sección presentamos una alternativa para descargar sólo los contratos que buscamos o contratos más actualizados que aún
-no se hayan publicado en el archivo completo, para esto usaremos la API datos.gob.mx proporcionada por el Gobierno Mexicano.
+Previously, we explained how to download the OCDS dataset through a single file. In this section, we will introduce an alternative to download only the contracts we are looking for or the most updated contracts that have not been published yet in the final file. For this, we will use datos.gob.mx API, provided by the Mexican government.
 
-> Para ver la documentación completa de la API se puede revisar la [Guía básica de uso de la API](http://transparenciapresupuestaria.gob.mx/work/models/PTP/programas/OpenDataDay/Resultados/Guia%20_uso_API_contrataciones%20_abiertas.pdf)
-> donde se detallan las opciones específicas de filtrado.
+> In order to see the full API documentation, please check [Basic guide to use API](http://transparenciapresupuestaria.gob.mx/work/models/PTP/programas/OpenDataDay/Resultados/Guia%20_uso_API_contrataciones%20_abiertas.pdf)
+> where you can see in detail the specific filter options.
 
-Para realizar la acción de descarga y para manipular un poco los datos utilizaremos las herramientas: [cURL](https://es.wikipedia.org/wiki/CURL)
-y [jq](https://es.wikipedia.org/wiki/Jq).
+In order to download and manipulate data, the following tools will be used: [cURL](https://es.wikipedia.org/wiki/CURL)
+and [jq](https://es.wikipedia.org/wiki/Jq).
 
-> El comando `curl` nos permitirá descargar la información de forma automática mientras el comando `jq` nos ayudará a
-> darle un formato manejable a los datos JSON.
-> Más adelante en este manual se incluye una breve introducción a `jq`.
+> The `curl` command will enable us to download information automatically and `jq` command will help us to
+> give a user-friendly format to JSON data.
+> At a lager stage, this manual includes a brief introduction to `jq`.
 
 --- 
-Se pueden instalar ambos programas de forma local, por ejemplo para Linux Ubuntu con una instrucción como:
+Both programs can be installed locally. For example, for Linux Ubuntu, it can be done with an instruction such as:
 ```
 sudo apt-get install -y curl jq
 ```
-Para Windows o Mac, tendríamos que descargar los archivos ejecutables por separado, pero también tenemos la opción de usar el
-*contenedor docker* incluido en el presente código, para ello solo tenemos que ejecutar el siguiente comando de docker:
+For Windows or Mac, we should download the executable files separately, but we can also use the
+*docker container* included in the current code. To this effect, we should only execute the following docker command:
 ```
-docker run --rm -it -v $HOME/Descargas:/input --entrypoint=bash logstash-sfp-compranet-ocds
+docker run --rm -it -v $HOME/Download:/input --entrypoint=bash logstash-sfp-compranet-ocds
 ```
-> Recuerda que `$HOME/` es una abreviación propia de sistemas Linux y Mac, en Windows usaremos `%HOMEPATH%\`
+> Remember that `$HOME/` is a shortcut only for Linux and Mac, in Windows we shall use `%HOMEPATH%\`
 
-Al ejecutar éste comando obtendremos una nueva línea de comandos, que debe lucir como:
+When this command is executed, we will get a new command line, which must look like this:
 ```
 bash-4.2$
 ```
-En esta [línea de comando]((https://es.wikipedia.org/wiki/Bash) ya podremos ejecutar los comandos presentados a continuación.
+In this [command line]((https://es.wikipedia.org/wiki/Bash) we can execute the following commands.
 
 ---
 
-Para descargar los últimos 100 procesos de contratación y guardarlo en un archivo `.json`:
+If you want to download the last 100 contracting processes and keep them in a `.json`file:
 ```
-curl https://api.datos.gob.mx/v2/contratacionesabiertas | jq -crM ".results" > contratacionesabiertas_ultimos_100.json
-```
-
-> Hay que considerar que para conservar los archivos creados dentro del contenedor deberemos moverlos o crearlos en las
-> carpetas compartidas entre la computadora y el contenedor. De lo contrario, estos archivos se perderán al momento de
-> "apagar" el contenedor.
-
-Para descargar los procesos de contratación que involucran a una unidad compradora determinada (limitado a 1000, pero se puede cambiar)
-```
-curl https://api.datos.gob.mx/v2/contratacionesabiertas?records.compiledRelease.parties.name=Servicio%20de%20Administraci%C3%B3n%20Tributaria&pageSize=1000&page=1 | jq -crM ".results"  > contratacionesabiertas_SAT_1000.json
+curl https://api.datos.gob.mx/v2/contratacionesabiertas | jq -crM ".results" > opencontracting_last_100.json
 ```
 
-Para comprender mejor este último comando, vamos a detallarlo parte por parte:
-* Primero se invoca a `curl`
-* Luego se incluye la dirección URL base de la API: [https://api.datos.gob.mx/v2/contratacionesabiertas](https://api.datos.gob.mx/v2/contratacionesabiertas)
-* A continuación los parámetros de filtrado:
-    - `records.compiledRelease.parties.name`: filtra por el valor de ese campo, es decir, el nombre de alguna de las partes del contrato.
-    - `pageSize`: especifica cuántos resultados devolverá en cada pedido
-    - `page`: permite ir pidiendo las páginas siguientes en caso de que haya más de una.
-* Luego usamos el comando `jq` para extraer únicamente la parte de los resultados.
-* Finalmente indicamos que el resultado de la operación debe ser almacenado en un archivo, es importante que este nombre
-  de archivo represente la consulta realizada para simplificar luego el archivado.
+> IF we want to keep the created files inside the container, we should move them or create them in
+> the shared files between the computer and the container. Otherwise, these files will be lost
+> when the container is "shut down".
 
-> Estos archivos deben almacenarse y tratarse de la misma forma que en la sección anterior, poniéndolos en la carpeta de
-> descargas, para poder continuar con el próximo paso.
+If we want to download the contracting processes that involve a certain business unit (unidad compradora)(it is limited to 1000, but it could be changed).
+```
+curl https://api.datos.gob.mx/v2/contratacionesabiertas?records.compiledRelease.parties.name=Servicio%20de%20Administraci%C3%B3n%20Tributaria&pageSize=1000&page=1 | jq -crM ".results"  > opencontracting_SAT_1000.json
+```
+
+In order to understand this last command, we will detail each section:
+* Firstly, `curl` command is used
+* Secondly, this URL API based is included: [https://api.datos.gob.mx/v2/contratacionesabiertas](https://api.datos.gob.mx/v2/contratacionesabiertas)
+* Next, we have the filter parameters:
+    - `records.compiledRelease.parties.name`: filters according to that field value, that is, the name of some sections in the contract.
+    - `pageSize`: details how many results it will give in each request
+    - `page`: it allows asking for the following pages, in case there is more than one.
+* Afterwards, we will use the `jq` command to extract only the results.
+* Lastly, we indicate that the operation result should be stored in a file,
+  it is important that this file's name
+  shows the query undertaken to be later filled.
+
+> These files must be stored and treated just as in the previous section,  
+> placing them in the download section so we can continue with our next step.

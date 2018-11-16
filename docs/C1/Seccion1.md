@@ -1,52 +1,52 @@
-## Introducción al Estándar de Datos de Contrataciones Abiertas
+## An Introduction to the Open Contracting Data Standard
 
-> *Esta introducción es una traducción del capítulo [An introduction to the Open Contracting Data Standard](https://github.com/rparrapy/ocds-r-manual/blob/master/manual.Rmd#an-introduction-to-the-open-contracting-data-standard) del Manual [Analyzing Open Contracting data using the R programming language](https://github.com/rparrapy/ocds-r-manual/blob/master/manual.Rmd) de [Rodrigo Parra](https://github.com/rparrapy)*
+> *This introduction has been taken from the chapter [An introduction to the Open Contracting Data Standard](https://github.com/rparrapy/ocds-r-manual/blob/master/manual.Rmd#an-introduction-to-the-open-contracting-data-standard) of the Manual [Analyzing Open Contracting data using the R programming language](https://github.com/rparrapy/ocds-r-manual/blob/master/manual.Rmd) by [Rodrigo Parra](https://github.com/rparrapy)*
 
-Se considera un dato abierto aquel que está en un formato estructurado, reutilizable y legible por máquina; más allá de los requerimientos técnicos, los datos abiertos abren nuevas oportunidades para la participación y la rendición de cuentas ciudadana. El [Estándar de Datos de Contrataciones Abiertas (OCDS por sus siglas en inglés)](https://www.open-contracting.org/data-standard/?lang=es) fue creado para aplicar estos principios a los datos relacionados con el ciclo de vida completo de contratación, que incluye planificación, convocatoria, adjudicación, contratación e implementación.
+By requiring data-sharing in a structured, re-usable and machine readable form; Open data opens up new opportunities for analysis and citizen engagement and participation. The [Open Contracting Data Standard](https://www.open-contracting.org/data-standard/) was created to apply these principles to the complete contracting life-cycle; including planning, tender, award, contract and implementation.
 
-El estándar de datos, diseñado y desarrollado mediante un proceso abierto por la [Open Contracting Partnership (OCP)](https://www.open-contracting.org/?lang=es), facilita a los gobiernos y ciudades de todo el mundo a compartir sus datos de contratación, permitiendo una mayor transparencia en la contratación pública y respaldando el análisis accesible y en profundidad de la eficiencia, efectividad, equidad e integridad de los sistemas de contratación pública. 
+The data standard, designed and developed through an open process by [Open Contracting Partnership (OCP)](https://www.open-contracting.org/?lang=es), allows governments and cities around the world to share their contracting data, enabling greater transparency in public contracting, and supporting accessible and in-depth analysis of the efficiency, effectiveness, fairness, and integrity of public contracting systems. Additionally, the help desk team, staffed by Open Data Services Co-operative, is available to assist prospective users in their journey towards adoption of the standard. 
 
-La intención de esta sección es presentar al lector el estándar, los casos de uso para los que fue diseñado y los conceptos básicos necesarios para aplicarlo. La mayoría del contenido fue tomado de la documentación oficial del estándar; para obtener una introducción más completa, consulte la [guía de inicio rápida de la OCP](http://standard.open-contracting.org/latest/en/getting_started/).
+The intention of this section is to introduce the reader to the standard, the use cases it was designed for and the basic concepts needed to apply it. Most of the content was taken from the official documentation of the standard; for a more thorough introductory walktrough, please refer to the [OCP getting started guide](http://standard.open-contracting.org/latest/en/getting_started/).
 
-### Usuarios y casos de uso
+### Users and use cases
 
-El estándar fue diseñado para satisfacer las cuatro necesidades principales que se detectaron en los usurarios:
+The standard was designed with four main groups of user needs:
 
-* Lograr poner en valor el gasto gubernamental
-* Fortalecimiento de la transparencia, la rendición de cuentas y la integridad de la contratación pública
-* Permitir que el sector privado compita de forma justa por los contratos públicos
-* Monitoreo de la efectividad de la prestación del servicio contratado
+* Achieving value for money for government
+* Strengthening the transparency, accountability and integrity of public contract
+* Enabling the private sector to fairly compete for public contracts
+* Monitoring the effectiveness of service delivery
 
-Para saber quién está publicando datos que cumplen con OCDS y cómo lo están haciendo, consulte la web de [OCP](https://www.open-contracting.org/?lang=es). Cuatro posibles casos de uso para los datos de contratación abierta son:
+To find out about who is using OCDS-compliant data around the globe and how they are doing it, have a look at the [OCP] website(http://www.open-contracting.org/). Four potential use cases for open contracting data are:
 
-* Valor para el dinero en la adquisición: ayudar a los funcionarios a obtener una buena relación calidad-precio durante el proceso de adquisición, y analizar si estos objetivos se lograron después.
-* Detección de fraude y corrupción: identificación de banderas rojas que podrían indicar corrupción mediante el estudio de adquisiciones individuales o redes basadas en fondos, propiedad e intereses.
-* Competir por contratos públicos: permitir que las empresas privadas comprendan el potencial de las oportunidades de adquisición al observar información relacionada con adquisiciones pasadas y actuales.
-* Supervisión de la prestación de servicios: ayuda a los actores interesados a aprovechar la trazabilidad en el proceso de adquisición para fines de supervisión, vinculando los presupuestos y los datos de los donantes con los contratos y los resultados.
+* Value for money in procurement: helping officials get good value for money during the procurement process, and analyzing whether these goals were achieved afterwards.
+* Detecting fraud and corruption: identifying red flags that might indicate corruption by studying individual procurements or networks based on funding, ownership and interests.
+* Competing for public contracts: allowing private firms to understand the potential pipeline of procurement opportunities by looking at information related to past and current procurements.
+* Monitoring Service Delivery: helping interested actors to leverage traceability in the procurement process for monitoring purposes, linking budgets and donor data to the contracts and results.
 
-### El proceso de contratación
+### The contracting process
 
-El estándar define un proceso de contratación como:
+The standard defines a contracting process as:
 
-> Toda la información de planificación, publicación de la convocatoria, adjudicaciones, contratos e implementación de contratos relacionada con un solo proceso de iniciación.
+> All the planning, tendering information, awards, contracts and contract implementation information related to a single initiation process.
 
-El estándar cubre todas las etapas de un proceso de contratación, aunque algunos procesos pueden no incluir todos los pasos posibles. Para fines de identificación, a todos los procesos de contratación se les asigna un Id. de contratación abierta único (ocid), que se puede utilizar para unir datos de diferentes etapas. Para evitar clústers de ocid entre editores, un editor puede anteponer un prefijo a los identificadores generados localmente. Se anima a los editores a registrar su prefijo [aquí](http://standard.open-contracting.org/latest/en/implementation/registration/).
+The standard covers all the stages of a contracting process, even though some processes might not involve all possible steps. For identification purposes, all contracting processes are assigned a unique Open Contracting ID (ocid), which can be used to join data from different stages. In order to avoid ocid clashes between publishers, a publisher can prepend a prefix to locally generated identifiers. Publishers are encouraged to register their prefix [here](http://standard.open-contracting.org/latest/en/implementation/registration/).
 
 
 
-### Documentos
+### Documents
 
-Los procesos de contratación se representan como **documentos** en el OCDS. Cada documento se compone de varias **secciones**, que se mencionan a continuación:
+Contracting processes are represented as **documents** in OCDS. Each document is made up of several **sections**, mentioned below:
 
-* **Metadatos de lanzamiento**: información contextual sobre cada lanzamiento de datos;
-* **Participantes**: información sobre las organizaciones y otros actores involucrados en el proceso de contratación;
-* **Planificación**: información sobre los objetivos, presupuestos y proyectos relacionados con un proceso de contratación;
-* **Convocatoria**: información sobre cómo se llevará a cabo una licitación;
-* **Adjudicación**: información sobre las adjudicaciones realizadas como parte de un proceso de contratación;
-* **Contrato**: información sobre contratos firmados como parte de un proceso de contratación;
-* **Implementación**: información sobre el progreso de cada contrato hacia la finalización.
+* **Release metadata**: contextual information about each release of data;
+* **Parties**: information about the organizations and other participants involved in the contracting process;
+* **Planning**: information about the goals, budgets and projects a contracting process relates to;
+* **Tender**: information about how a tender will take place, or has taken place;
+* **Awards**: information on awards made as part of a contracting process;
+* **Contract**: information on contracts signed as part of a contracting process;
+* **Implementation**: information on the progress of each contract towards completion.
 
-Un ejemplo de fragmento de JSON compatible con esta estructura se ve de la siguiente manera:
+An example JSON snippet compliant with this structure looks as follows:
 
 ```{json}
 {
@@ -67,17 +67,17 @@ Un ejemplo de fragmento de JSON compatible con esta estructura se ve de la sigui
 }
 ```
 
-Hay dos tipos de documentos definidos en el estándar:
+There are two types of documents defined in the standard:
 
-* **Releases** son inmutables y representan actualizaciones sobre el proceso de contratación. Por ejemplo, se pueden usar para notificar a los usuarios de nuevas convocatorias, premios, contratos y otras actualizaciones. Como tal, un único proceso de contratación puede tener muchos lanzamientos.
+* **Releases** are immutable and represent updates on the contracting process. For example, they can be used to notify users of new tenders, awards, contracts and other updates. As such, a single contracting process can have many releases.
 
-* **Registros** son instantáneas del estado actual de un proceso de contratación. Un registro debe actualizarse cada vez que se publique una nueva versión asociada a su proceso de contratación; por lo tanto, solo debe haber un registro por proceso de contratación.
+* **Records** are snapshots of the current state of a contracting process. A record should be updated every time a new release associated to its contracting process is published; hence, there should only be a single record per contracting process.
 
-### Campos
+### Fields
 
-Cada sección puede contener varios **campos** especificados en el estándar, que se utilizan para representar datos. Estos objetos pueden aparecer varias veces en diferentes secciones del mismo documento; por ejemplo, los artículos pueden presentarse en convocatoria (para indicar los artículos que un comprador desea comprar), en un objeto de adjudicación (para indicar los artículos para los que se ha realizado una adjudicación) y en un objeto contractual (para indicar los artículos enumerados en el contrato). Algunos campos de ejemplo, acompañados por los fragmentos de JSON correspondientes, se presentan a continuación.
+Each section may contain several **fields** specified in the standard, which are used to represent data. These objects can appear several times in different sections of the same document; for example, items can occur in tender (to indicate the items that a buyer wishes to buy), in an award object (to indicate the items that an award has been made for) and in a contract object (to indicate the items listed in the contract). Some example fields, accompanied by corresponding JSON snippets, are presented below
 
-#### Participantes (Organizaciones)
+#### Parties (Organizations)
 
 ```{json, eval=FALSE}
 {
@@ -107,7 +107,7 @@ Cada sección puede contener varios **campos** especificados en el estándar, qu
 }
 ```
 
-#### Valores
+#### Amounts
 
 ```{json, eval=FALSE}
 {
@@ -147,7 +147,7 @@ Cada sección puede contener varios **campos** especificados en el estándar, qu
 }
 ```
 
-#### Periodos de tiempo
+#### Time periods
 
 ```{json, eval=FALSE}
 {
@@ -156,7 +156,7 @@ Cada sección puede contener varios **campos** especificados en el estándar, qu
 }
 ```
 
-#### Documentos
+#### Documents
 
 ```{json, eval=FALSE}
 {
@@ -171,7 +171,7 @@ Cada sección puede contener varios **campos** especificados en el estándar, qu
 }
 ```
 
-#### Hitos
+#### Milestones
 
 ```{json, eval=FALSE}
 {
@@ -183,14 +183,14 @@ Cada sección puede contener varios **campos** especificados en el estándar, qu
 ```
 
 
-### Extensiones y listas de códigos
+### Extensions and codelists
 
-Además de los campos regulares, el esquema OCDS define algunos campos que solo se pueden usar en ciertas secciones, p. *títulos* y *descripciones* de licitaciones, premios y contratos. En algunos casos, los editores pueden requerir campos que no son proporcionados por el esquema central; una **extensión** permite definir nuevos campos que se pueden usar en estos casos. Una lista de las extensiones disponibles se puede encontrar [aquí](http://standard.open-contracting.org/latest/en/extensions); si ninguna extensión existente satisface las necesidades de un editor, se alienta al editor a colaborar en la creación de una nueva extensión de comunidad.
+In addition to regular fields, the OCDS schema defines some fields that can only be used in certain sections, e.g. *titles* and *descriptions* of tenders, awards and contracts. In some cases, publishers may require fields that are not provided by the core schema; an **extension** allows defining new fields that can be used in these cases. A list of available extensions is available [here](http://standard.open-contracting.org/latest/en/extensions); if no existing extension addresses a publisher's needs, the publisher is encouraged to collaborate on the creation of a new community extension.
 
-Otro concepto que vale la pena mencionar es el de las listas de códigos. Las listas de códigos son conjuntos de cadenas sensibles a mayúsculas y minúsculas con etiquetas asociadas, disponibles en cada idioma en el que se ha traducido el OCDS. Los editores deben usar valores de lista de códigos siempre que sea posible para mapear sus sistemas de clasificación existentes; si es necesario, los campos de detalles pueden usarse para proporcionar información de clasificación más detallada. Hay dos tipos de listas de códigos:
+Another concept worth mentioning is that of codelists. Codelists are sets of case sensitive  strings with associated labels, available in each language OCDS has been translated into. Publishers should use codelist values whenever possible to map their existing classification systems; if needed, detail fields can be used to provide more detailed classification information. There are two types of codelists:
 
-* **Las listas de códigos cerradas** son conjuntos de valores fijos. Si un campo está asociado con una lista de códigos cerrada, solo debe aceptar una opción de la lista publicada.
-* **Las listas de códigos abiertas** son conjuntos de valores recomendados. Si un campo está asociado con una lista de códigos abierta, acepta opciones de la lista, pero también otros valores.
+* **Closed codelists** are fixed sets of values. If a field is associated with a closed codelist, it should only accept an option from the published list.
+* **Open codelists** are sets of recommended values. If a field is associated with an open codelist, it accepts options from the list but also other values.
 
 
-El OCDS se mantiene utilizando un [esquema JSON](http://json-schema.org). En esta sección, hemos introducido y descrito las secciones principales y los objetos comunes utilizados en el esquema, proporcionando fragmentos JSON como ejemplos de estos bloques básicos. Si le intereasa en la referencia completa del esquema JSON, consulte la [documentación oficial](http://standard.open-contracting.org/latest/en/schema/).
+OCDS is maintained using [JSON schema](http://json-schema.org). In this section we have introduced and described the main sections and common objects used in the schema, providing JSON snippets as examples of these basic building blocks. If you are interested in the full JSON schema reference, please refer to the [official documentation](http://standard.open-contracting.org/latest/en/schema/).

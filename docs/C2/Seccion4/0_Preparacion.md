@@ -1,105 +1,99 @@
-# Preparación de los datos OCDS por paquetes
+# Preparing OCDS data in packages
 
-## Formato disponible y formato requerido
+## Available and required format
 
-El archivo obtenido desde gob.mx se presenta en formato de colección de [Paquete de
-Registros](http://standard.open-contracting.org/latest/es/schema/record_package/)
+The file obtained from gob.mx is in format [Record Package](http://standard.open-contracting.org/latest/es/schema/record_package/)
 
-> El esquema de paquete de registros (record package) describe la estructura del contenedor para publicar registros. Los
-> contenidos de un registro se basan en el esquema de entregas (releases). El paquete contiene metadatos importantes.
+> The record package's scheme describes the container structure to publish records.
+> The record content is based on the releases scheme. The package contains important metadata.
 
 ```
 [
-    { paquete de registros ocds },
-    { paquete de registros ocds },
+    { ocds record package },
+    { ocds record package },
 ]
 ```
 
-Esto se traduce en una estructura como la siguiente:
+This translates into a structure similar to this one:
 
 ```
 [
     {
         "uri": "..."
         "version": "..."
-        ... otros meta datos ...
+        ... another metadata ...
         "records": [
-            { documento ocds },
-            { documento ocds },
+            { ocds document },
+            { ocds document },
             ...
         ]
     },
     {
         "uri": "..."
         "version": "..."
-        ... otros meta datos ...
+        ... another metadata ...
         "records": [
-            { documento ocds },
-            { documento ocds },
+            { ocds document },
+            { ocds document },
             ...
         ]
     }
 ]
 ```
 
-Para poder trabajar con este documento necesitaremos convertirlo a un format donde cada linea del archivo sea un
-documento OCDS.
+In order to work with this document, we will need to turn it into a format where each line of the file
+is an OCDS document.
 ```
-{ documento ocds }
-{ documento ocds }
+{ ocds document }
+{ ocds document }
 ```
 
-De esta forma podremos procesarlo con Logstash para despues enviar los documentos uno a uno a ElasticSearch.
+In this manner, we can process it with Logstash and later send one document at a time to ElasticSearch.
 
-## Convertiendo el formato con la herramienta `jq`
+## Converting the format with `jq` tool
 
-Para poder trabajar con archivos JSON existe una herramienta disponible llamada [jq](https://stedolan.github.io/jq/) de
-código libre y licencia MIT.
+An open source and MIT license tool is available to work with JSON files: [jq](https://stedolan.github.io/jq/).
 
-Esta herramienta nos permitirá manipular el documento JSON y llevarlo al formato requerido. Una vez que tenemos
-instalada esta herramienta y disponible el comando `jq` podemos usar un comando como:
+With this tool, we can manipulate the JSON document and turn it into the required format. Once we have installed this tool and have `jq` command available, we can use a command like this:
 ```
-jq -crM ".[].records[]" "archivo.json" > "archivo.ocds_por_linea"
+jq -crM ".[].records[]" "file.json" > "file.ocds_per_line"
 ```
-> Recomendamos ampliamente consultar el manual de `jq` pero a continuación explicaremos que hace este comando específico.
+> We recommend you check the `jq` file, but now we will explain what this specific command does.
 
 ```
 jq
-    -c = Presenta el documento JSON de forma compacta
-    -r = Presenta el documento JSON con valores sin formatos especiales
-    -M = Sin color (Monocromatico)
-    ".[].records[]" = Filtro de jq
-    "archivo.json" = El archivo por leer
-    "archivo.ocds_por_linea" = El archivo generado con el resultado
+    -c = Presents the JSON document compactly
+    -r = Presents the JSON document in values without special formats
+    -M = ´Monochromatic
+    ".[].records[]" = Jq filter
+    "file.json" = File to be read
+    "filer.ocds_por_linea" = The file created as a result
 ```
-### El filtro jq y la estructura de datos
+### Jq filter and data structure
 
-El filtro es la parte más importante de este comando para entenderlo debemos revisar con cuidado la estructura de datos
-presentada en el archivo original.
+The filter is the most important part of this command. We must review carefully the data structure introduced in the original file in order to understand it.
 ```
 [
     {
         "uri": "..."
         "version": "..."
-        ... otros meta datos ...
+        ... another metadata ...
         "records": [
-            { documento ocds },
-            { documento ocds },
+            { ocds document },
+            { ocds document },
             ...
         ]
     },
     ...
 ]
 ```
-Para efectos de este proyecto nos interesa obtener cada documento ocds por separado, de acuerdo a la notacion de
-documentos JSON una ruta para acceder a ellos sería:
-1. Entremos a cada elemento del arreglo raíz: `.[]`
-1. De cada elemento, entremos a la propiedad records: `.records`
-1. Obtengamos cada elemento de este arreglo: `.records[]`
+For the purpose of this project, we are interested in getting each OCDS file separately. According to JSON documents entry, the path to access them would be:
+1. Enter each element of root array: `.[]`
+1. From each element, we should access records property: `.records`
+1. Obtain each element of this array: `.records[]`
 
-Uniendo todas las instrucciones y en notacion de filtro de jq obtenemos: `.[].records[]`
+Putting all instructions together, and in jq filter note, we should get: `.[].records[]`
 
-Los archivos producidos por este comando son adecuados para procesarlos con Logstash, así que continuemos con la
-creación del pipeline, pero primero revisemos algunos conceptos importantes.
+The files created by this command are adequate to process with Logstash. Now, we will continue with the pipeline creation, but first we should review some important concepts.
 
-[Siguiente](1_Conceptos.md)
+[Next](1_Conceptos.md)

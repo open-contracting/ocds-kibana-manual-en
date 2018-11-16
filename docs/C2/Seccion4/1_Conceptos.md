@@ -1,33 +1,32 @@
-# Conceptos Basicos para Pipelines de Logstash
+# Basic Concepts for Logstash Pipelines
 
-## Sintaxis
+## Syntax
 
-Las definiciones de Pipelines para Logstash utilizan un lenguaje similar a bloques de código de programación
-simplificado.
+Logstash Pipelines definitions use a similar language to simplified programming code blocks.
 
-Cada filtro o plugin es definido por un bloque:
+Each filter or plugin is defined by a block:
 ```
-bloque {
+block {
 
 }
 ```
 
-Algunas veces estos bloques pueden estar vacios
+Sometimes these blocks may be empty
 ```
-bloque { }
-```
-
-Pero comúnmente utilizaremos opciones y argumentos para estos bloques, y esto se define como:
-```
-bloque { opcion => valor }
+block { }
 ```
 
-Los valores de las opciones pueden ser de distintos tipos:
+But we will commonly use options and arguments for these blocks, and this is defined as:
+```
+block { option => value }
+```
 
-- Texto `opcion => "Texto"`
-- Numerico `opcion => 123`
-- Boolean (Verdadero / Falso) `opcion => true` o `opcion => false`
-- Arreglos `opcion => [ "Texto", 123, false ]`
-    > Los arreglos son conjuntos de otros tipos
+We may have different types of option values:
 
-[Siguiente](2_Entrada.md)
+- Text `option => "Text"`
+- Numeric `option => 123`
+- Boolean (True / False) `option => true` or `option => false`
+- Arrays `option => [ "Text", 123, false ]`
+    > Arrays are a different sort of sets
+
+[Next](2_Input.md)

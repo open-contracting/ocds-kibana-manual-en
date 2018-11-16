@@ -1,36 +1,36 @@
-Si bien la mayoría de la información en este manual puede ser utilizada para el análisis de cualquier conjunto de datos, nuestros esfuerzos  están orientados a analizar datos de Contrataciones Abiertas publicadas por la Secretaría de Hacienda y Crédito Público.
+Although most of this manual's information can be used to analyze any data set, our efforts concentrate on analyzing Open Contracting Data published by the Ministry of Finance and Public Credit.
 
-## Datos de Contrataciones Abiertas
-Desde hace muchos años existen datos abiertos sobre contrataciones en México, un historial de los mismos se puede encontrar en el sitio de [CompraNet](http://compranet.funcionpublica.gob.mx/), que dispone de información en formato Excel desde el año 2002. Estos datos han sido objeto de múltiples análisis a lo largo del tiempo y están disponibles en una variedad de plataformas de tecnología cívica que simplifican su análisis. Para enumerar algunas de las que están actualmente disponibles:
-* [QuiénEsQuién.Wiki](https://www.quienesquien.wiki)
+## Open Contracting Data
+Open Contracting Data has existed for many years in Mexico. Our records are available at the [CompraNet] web page(http://compranet.funcionpublica.gob.mx/), which has an Excel file with information since 2002. This data has been analyzed thoroughly throughout time, and is available in a variety of civic tech that makes it simpler to evaluate. These are some that are currently accessible:
+* [Who's Who Wiki](https://www.quienesquien.wiki)
 * [ContratoBook](http://contratobook.org/#/contratos)
 * [CompranNetFacil](http://compranetfacil.com/)
 * [Data Analytics for Procurement](http://mexico.procurement-analytics.org/#/analysis/summary)
 
-## Datos mexicanos en OCDS
-Desde el año 2015 hay diferentes proyectos en la administración pública mexicana para publicar datos en el estándar de contrataciones abiertas OCDS. El primero que estuvo disponible fue el sitio de la [Ciudad de México](http://www.contratosabiertos.cdmx.gob.mx/contratos). La fuente de datos gubernamentales en OCDS la publica [la Secretaría de Hacienda y Crédito Público](https://www.gob.mx/contratacionesabiertas/home) y son los datos que se usan en este manual. 
+## OCDS Mexican Data
+Since 2015 different Mexican Public administration projects have emerged in order to publish data in OCDS. The first one available was [Mexico City] website(http://www.contratosabiertos.cdmx.gob.mx/contratos). It is published by the government database source in OCDS [Ministry of Finance and Public Credit](https://www.gob.mx/contratacionesabiertas/home) , and this is the data used in this manual.
 
-Adicionalmente hay que destacar el esfuerzo para traducir el OCDS al español realizado por la [Alianza para las contrataciones Abiertas de México](https://www.contratacionesabiertas.mx/); otros organismos que publican en OCDS son el [Instituto Nacional de Acceso a la Información y Protección de Datos](http://contratacionesabiertas.inai.org.mx), el Grupo Aeroportuario de la Ciudad de México que publica [los contratos en para la construcción del Nuevo Aeropuerto](https://datos.gob.mx/nuevoaeropuerto/), la Secretaría de Comunicaciones y Transportes pública los [contratos relacionados con el proyecto Red Compartida](https://datos.gob.mx/redcompartida/) y a nivel subnacional está la [Secretaría de Planificación, Administración y Finanzas del Gobierno de Jalisco](https://contratacionesabiertas.jalisco.gob.mx/contratosabiertos/). 
+Furthermore, it is worth noting the effort made by [Open Contracting Partnership in Mexico](https://www.contratacionesabiertas.mx/) to translate OCDS into Spanish; other organizations that publish in OCDS are [National Institute for Transparency, Access to Information and Personal Data Protection](http://contratacionesabiertas.inai.org.mx), Mexico City Airport Group that publishes [contracts to build the New Airport](https://datos.gob.mx/nuevoaeropuerto/), the Secretariat of Communications and Transportation publishes [contracts related to Shared Network project](https://datos.gob.mx/redcompartida/) and at a subnational level, we can find [Secretariat of Planning, Administration and Finance of the Government of Jalisco](https://contratacionesabiertas.jalisco.gob.mx/contratosabiertos/). 
 
-## Datos en OCDS en América Latina
+## OCDS Data in Latin America
 
-Además de México en América Latina hay en cinco países seis conjuntos de datos en formato OCDS :
-* [ChileCompra](http://www.chilecompra.cl/)
-* [Colombia Compra Eficiente](https://www.colombiacompra.gov.co/transparencia/gestion-documental/datos-abiertos)
-* [Superintendencia de Alianza Público-Privada de Honduras](http://app.sisocs.org/index.php?r=Ciudadano/index)
-* [Portal de Contrataciones Públicas de la República de Paraguay](https://www.contrataciones.gov.py/datos/api/v2/#!/ocds) 
-* [Portal de Datos Abiertos del Ministerio de Hacienda de Paraguay](https://datos.hacienda.gov.py/)
-* [Compras Estatales de la Agencia de Compras y Contrataciones del Estado de Uruguay](https://www.comprasestatales.gub.uy/inicio/datos-abiertos/)
+Along with Mexico, five more countries in Latin America have six OCDS datasets:
+* [ChileBuys](http://www.chilecompra.cl/)
+* [Colombia Buys Efficient](https://www.colombiacompra.gov.co/transparencia/gestion-documental/datos-abiertos)
+* [The Public-Private Partnerships In Honduras](http://app.sisocs.org/index.php?r=Ciudadano/index)
+* [Open Contracting in Paraguay](https://www.contrataciones.gov.py/datos/api/v2/#!/ocds) 
+* [Open Data Portal of the Paraguay's Ministry of Finance](https://datos.hacienda.gov.py/)
+* [State Purchases of Uruguay's Public Procurement and Contracting Agency](https://www.comprasestatales.gub.uy/inicio/datos-abiertos/)
 
-En el manual [OCDS Kingfisher tool](https://ocdskingfisher.readthedocs.io/en/master/index.html) se explica como descargarlos e importarlos. 
+In the manual [OCDS Kingfisher tool](https://ocdskingfisher.readthedocs.io/en/master/index.html), it is explained how to download and import them.
 
-## Los datos para este manual
-Como se dijo en el apartado anterior en este manual vamos a estar utilizando los datos publicados por el área de Transparencia Presupuestaria de la Secretaría de Hacienda y Crédito Público disponibles aquí: [https://www.gob.mx/contratacionesabiertas](https://www.gob.mx/contratacionesabiertas)
+## Data for this manual
+As we have mentioned in the previous section, we will be using data published by the Ministry of Finance and Public Credit's Budget Transparency area, which is available over here: [https://www.gob.mx/contratacionesabiertas](https://www.gob.mx/contratacionesabiertas)
 
-En particular vamos a trabajar con el concentrado de contrataciones abiertas de la Administración Pública Federal en formato JSON, obtenido desde esta URL: [https://datos.gob.mx/busca/dataset/concentrado-de-contrataciones-abiertas-de-la-apf/resource/0252e19f-bdd6-43de-af7b-106d4c7a82c8](https://datos.gob.mx/busca/dataset/concentrado-de-contrataciones-abiertas-de-la-apf/resource/0252e19f-bdd6-43de-af7b-106d4c7a82c8)
+More specifically, we will be working with the Open Contract section of the Federal Public Administration in JSON format, obtained through this URL: [https://datos.gob.mx/busca/dataset/concentrado-de-contrataciones-abiertas-de-la-apf/resource/0252e19f-bdd6-43de-af7b-106d4c7a82c8](https://datos.gob.mx/busca/dataset/concentrado-de-contrataciones-abiertas-de-la-apf/resource/0252e19f-bdd6-43de-af7b-106d4c7a82c8)
 
-Este dataset incluye datos de contrataciones realizadas por todas las dependencias del gobierno federal, organismos autónomos, empresas paraestatales y aquellos contratos de nivel estatal y municipal que cuentan con aportes del gobierno federal. Los datos disponibles en este formato son a partir del año 2017 y se actualizan continuamente. Si bien la frecuencia de actualización del archivo en el portal de datos no está explicitada, y al momento de la escritura la última versión es de principios de 2018, sí se pueden obtener datos más nuevos mediante el uso de la API descripta en este documento: [http://transparenciapresupuestaria.gob.mx/work/models/PTP/programas/OpenDataDay/Resultados/Guia%20_uso_API_contrataciones%20_abiertas.pdf](http://transparenciapresupuestaria.gob.mx/work/models/PTP/programas/OpenDataDay/Resultados/Guia%20_uso_API_contrataciones%20_abiertas.pdf)
+This dataset includes contracting data conducted by each federal government department, autonomous organizations, State-owned companies and all those state and citywide contracts with a contribution from the government. Data in this format is available since 2017 and is constantly updated. Even though the file update frequency is not indicated in the data portal, and the last version is from 2018, you can find more recent data with the API described in this document: [http://transparenciapresupuestaria.gob.mx/work/models/PTP/programas/OpenDataDay/Resultados/Guia%20_uso_API_contrataciones%20_abiertas.pdf](http://transparenciapresupuestaria.gob.mx/work/models/PTP/programas/OpenDataDay/Resultados/Guia%20_uso_API_contrataciones%20_abiertas.pdf)
 
-Adicionalmente, fuimos capaces de obtener un volcado completo de los datos en OCDS por solicitud directa al área responsable.
+In addition to that, we could get a full data dump in OCDS, by requiring directly to the responsible area.
 
-En el siguiente capítulo profundizaremos sobre las herramientas necesarias para realizar análisis sobre estos datos y cómo importarlos.
+In the following chapter, we will explore in depth the tools needed to analyze this data and import it.

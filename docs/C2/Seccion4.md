@@ -1,155 +1,147 @@
-# Procesamiento de datos con Logstash
+# Logstash data processing
 
-Ahora que hemos logrado poner en marcha la plataforma podemos ahondar en los detalles técnicos de la colección,
-procesamiento e indexación de los datos, que como habíamos revisado con anterioridad es la tarea realizada por la
-herramienta Logstash.
+Now we have managed to start the platform, we can see in detail the collection technical details, processing and data index. As we have seen before, this task corresponds to Logstash.
 
-**IMPORTANTE:** Todo lo mencionado a continuación se encuentra implementado en el código incluido en los contenedores
-Docker. NO es necesario repetir estos pasos, unicamente se menciona aqui para entender mejor el proceso.
+**IMPORTANT:** Everything we will mention next is implemented in the code as a part of Docker containers. It is not necessary to repeat these steps, we just mention this here for a better understanding of the process.
 
-### Preparación de los datos OCDS por paquetes
+# Preparing OCDS data in packages
 
-#### Formato disponible y formato requerido
+## Available and required format
 
-El archivo obtenido desde gob.mx se presenta en formato de colección de [Paquete de
-Registros](http://standard.open-contracting.org/latest/es/schema/record_package/)
+The file obtained from gob.mx is in format [Record Package](http://standard.open-contracting.org/latest/es/schema/record_package/)
 
-> El esquema de paquete de registros (record package) describe la estructura del contenedor para publicar registros. Los
-> contenidos de un registro se basan en el esquema de entregas (releases). El paquete contiene metadatos importantes.
+> The record package's scheme describes the container structure to publish records.
+> The record content is based on the releases scheme. The package contains important metadata.
 
 ```
 [
-    { paquete de registros ocds },
-    { paquete de registros ocds },
+    { ocds record package },
+    { ocds record package },
 ]
 ```
 
-Esto se traduce en una estructura como la siguiente:
+This translates into a structure similar to this one:
 
 ```
 [
     {
         "uri": "..."
         "version": "..."
-        ... otros meta datos ...
+        ... another metadata ...
         "records": [
-            { documento ocds },
-            { documento ocds },
+            { ocds document },
+            { ocds document },
             ...
         ]
     },
     {
         "uri": "..."
         "version": "..."
-        ... otros meta datos ...
+        ... another metadata ...
         "records": [
-            { documento ocds },
-            { documento ocds },
+            { ocds document },
+            { ocds document },
             ...
         ]
     }
 ]
 ```
 
-Para poder trabajar con este documento necesitaremos convertirlo a un formato donde cada línea del archivo sea un documento OCDS.
+In order to work with this document, we will need to turn it into a format where each line of the file
+is an OCDS document.
 ```
-{ documento ocds }
-{ documento ocds }
+{ ocds document }
+{ ocds document }
 ```
 
-De esta forma podremos procesarlo con Logstash para después enviar los documentos uno a uno a ElasticSearch.
+In this manner, we can process it with Logstash and later send one document at a time to ElasticSearch.
 
-#### Convirtiendo el formato con la herramienta `jq`
+## Converting the format with `jq` tool
 
-Para poder trabajar con archivos JSON existe una herramienta disponible llamada [jq](https://stedolan.github.io/jq/) de código libre y licencia MIT.
+An open source and MIT license tool is available to work with JSON files: [jq](https://stedolan.github.io/jq/).
 
-Esta herramienta nos permitirá manipular el documento JSON y llevarlo al formato requerido. Una vez que tenemos instalada esta herramienta y disponible el comando `jq` podemos usar un comando como:
+With this tool, we can manipulate the JSON document and turn it into the required format. Once we have installed this tool and have `jq` command available, we can use a command like this:
 ```
 jq -crM ".[].records[]" "archivo.json" > "archivo.ocds_por_linea"
 ```
-> Recomendamos ampliamente consultar el manual de `jq` pero a continuación explicaremos qué hace este comando específico.
+> We recommend you check the `jq` file, but now we will explain what this specific command does.
 
 ```
 jq
-    -c = Presenta el documento JSON de forma compacta
-    -r = Presenta el documento JSON con valores sin formatos especiales
-    -M = Sin color (Monocromatico)
-    ".[].records[]" = Filtro de jq
-    "archivo.json" = El archivo por leer
-    "archivo.ocds_por_linea" = El archivo generado con el resultado
+    -c = Presents the JSON document compactly
+    -r = Presents the JSON document in values without special formats
+    -M = ´Monochromatic
+    ".[].records[]" = Jq filter
+    "file.json" = File to be read
+    "file.ocds_per_line" = The file created as a result
 ```
-##### El filtro jq y la estructura de datos
+### Jq filter and data structure
 
-El filtro es la parte más importante de este comando; para entenderlo debemos revisar con cuidado la estructura de datos presentada en el archivo original.
+The filter is the most important part of this command. We must review carefully the data structure introduced in the original file in order to understand it.
 ```
 [
     {
         "uri": "..."
         "version": "..."
-        ... otros meta datos ...
+        ... another metadata ...
         "records": [
-            { documento ocds },
-            { documento ocds },
+            { ocds document },
+            { ocds document },
             ...
         ]
     },
     ...
 ]
 ```
-Para efectos de este proyecto nos interesa obtener cada documento OCDS por separado, de acuerdo a la notación de documentos JSON una ruta para acceder a ellos sería:
-1. Entremos a cada elemento del arreglo raíz: `.[]`
-1. De cada elemento, entremos a la propiedad records: `.records`
-1. Obtengamos cada elemento de este arreglo: `.records[]`
+For the purpose of this project, we are interested in getting each ocds file separately. According to JSON documents entry, the path to access them would be:
+1. Enter each element of root array: `.[]`
+1. From each element, we should access records property: `.records`
+1. Obtain each element of this array: `.records[]`
 
-Uniendo todas las instrucciones y en notación de filtro de jq obtenemos: `.[].records[]`
+Putting all instructions together, and in jq filter note, we should get: `.[].records[]`
 
-Los archivos producidos por este comando son adecuados para procesarlos con Logstash, así que continuemos con la
-creación del pipeline, pero primero revisemos algunos conceptos importantes.
+The files created by this command are adequate to process with Logstash. Now, we will continue with the pipeline creation, but first we should review some important concepts.
 
 
-### Conceptos básicos para Pipelines de Logstash
+# Basic Concepts for Logstash Pipelines
 
-Ahora que estamos listos para enviar los datos a Logstash, revisemos algunos conceptos requeridos para entender mejor
-las mecánicas de Logstash.
+## Syntax
 
-#### Sintaxis
+Logstash Pipelines definitions use a similar language to simplified programming code blocks.
 
-Las definiciones de Pipelines para Logstash utilizan un lenguaje similar a bloques de código de programación
-simplificado.
-
-Cada filtro o plugin es definido por un bloque:
+Each filter or plugin is defined by a block:
 ```
-bloque {
+block {
 
 }
 ```
 
-Algunas veces estos bloques pueden estar vacíos
+Sometimes these blocks may be empty
 ```
-bloque { }
-```
-
-Pero comúnmente utilizaremos opciones y argumentos para estos bloques, y esto se define como:
-```
-bloque { opcion => valor }
+block { }
 ```
 
-Los valores de las opciones pueden ser de distintos tipos:
+But we will commonly use options and arguments for these blocks, and this is defined as:
+```
+block { option => value }
+```
 
-- Texto `opcion => "Texto"`
-- Numerico `opcion => 123`
-- Boolean (Verdadero / Falso) `opcion => true` o `opcion => false`
-- Arreglos `opcion => [ "Texto", 123, false ]`
-    > Los arreglos son conjuntos de otros tipos.
+We may have different types of option values:
+
+- Text `option => "Text"`
+- Numeric `option => 123`
+- Boolean (True / False) `option => true` or `option => false`
+- Arrays `option => [ "Text", 123, false ]`
+    > Arrays are a different sort of sets
 
 ## Pipeline
 
-En el archivo [pipeline.conf](https://github.com/ProjectPODER/ManualKibanaOCDS/blob/master/pipeline/pipeline.conf) podemos encontrar el pipeline ya diseñado para este dataset; revisemos cada uno de los bloques que lo componen.
+In the file [pipeline.conf](https://github.com/ProjectPODER/ManualKibanaOCDS/blob/master/pipeline/pipeline.conf), we can find the already designed pipeline for this dataset; let's check each of the blocks composing it.
 
 
-### Entrada (input)
+# Input
 
-Este componente le indica a Logstash de dónde y cómo leerá los datos originales.
+This component indicates Logstash where and how to read the original data.
 
 ```
 input {
@@ -158,12 +150,11 @@ input {
   }
 }
 ```
-Para este pipeline hemos decidido leer el archivo desde la entrada estándar del programa, por cada línea de texto que
-reciba el programa esta será tratada como un documento JSON y almacenada en memoria para el siguiente paso.
+For this pipeline, we have decided to read the file from the program standard input. According to the text line the program receives, it will be treated as a JSON document and stored in memory for the following step.
 
-### Transformación (filter)
+# Transformation (filter)
 
-Este bloque le indica a Logstash qué debe hacer con cada uno de los registros que ha leído desde el módulo de Entrada.
+This block indicates Logstash what to do with each of the records read from Input module.
 
 ```
 filter {
@@ -178,47 +169,50 @@ filter {
 }
 ```
 
-Este puede ser el proceso más complicado del Pipeline, y también el más interesante y poderoso para nuestras tareas.
+This could be the Pipeline's most complicated process, and also the most interesting and powerful for our tasks.
 
-Este bloque se compone por una serie de filtros que actúan de forma secuencial, en este caso solo ocupamos un filtro: ruby.
+This block is composed by a set of filters that behave sequentially. In this case, we will just use a filter: ruby
 
-### [Filtro Ruby](https://www.elastic.co/guide/en/logstash/current/plugins-filters-ruby.html)
+### [Ruby Filter](https://www.elastic.co/guide/en/logstash/current/plugins-filters-ruby.html)
 
-> Este filtro es más avanzado y requiere de conocimientos de programación en lenguaje Ruby.
+> This filter is more advanced and requires programming knowledge in Ruby language.
 
-El objetivo de esta sección es tomar de cada documento JSON recibido la propiedad `compiledRelease`, y a su vez, leer
-cada propiedad que lo compone, y copiarla sobre la raíz del documento.
+This section's objective is to take the `compiledRelease` property of each JSON file received and, in turn, read each property that composes it as well as copy it over the file root.
 
-**Ejemplo**
+**Example**
 ```
 {
   "compiledRelease": {
     "a": "A",
     "bc": [ "B", "C" ],
-    "tercero": {
+    "third": {
       "a": "3.A",
       "b": "3.B"
     }
   }
 }
 ```
-Sería transformado como:
+It would be transformed as:
 ```
 {
   "a": "A",
   "bc": [ "B", "C" ],
-  "tercero": {
+  "third": {
     "a": "3.A",
     "b": "3.B"
   }
 }
 ```
-Al final la propiedad `compiledRelease` es removida de la misma forma que `releases`, `host` y `path`.
+At the end, the `compiledRelease` property is removed; in the same way as  `releases`, `host` and `path.
 
-### Salida (output)
+## Important
 
-Esta sección le indica a Logstash qué debe hacer con los nuevos documentos, en nuestro caso queremos que los resultado
-sean enviados a ElasticSearch.
+When this block is over, each JSON line should have been turned into the desired format and will still be stored in the Logstash memory, ready to be sent to the next block: Output [output](4_Salida.md)
+
+
+# Output
+
+This section indicates Logstash what to do with the new documents. In our case, we want the results to be sent to ElasticSearch.
 
 ```
 output {
@@ -236,23 +230,24 @@ output {
 
 ```
 
-Aquí realizamos dos cosas:
-1. Guardar en un archivo log todos los documentos procesados, uno por cada línea.
-1. Enviar los documentos a ElasticSearch.
+Here, we will proceed with two steps:
+1. Save all processed documents in a log file, one per line.
+1. Send these documents to ElasticSearch
 
-Para lo primero utilizamos el Plugin [Output File](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-file.html)
-y en las opciones especificamos el nombre del archivo log, que debe ser creado si no existe y que debe sobrescribir lo existente.
+For the former, we will use the [Output File](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-file.html) Plugin, 
+and in the options we should specify the log file's name, which should be created if nonexistent and overwrite all previous information.
 
-Para enviar los documentos a ElasticSearch usamos otro plugin que dispone de múltiples opciones; en nuestro caso especificamos tres
-pero recomendamos consultar el manual [Output ElasticSearch](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html).
+We use another plugin with multiple options to send ElasticSearch the files. 
+We will specify three of them, but we recommend to check the manual.
 
-Las opciones utilizadas son las siguientes:
-- `index`: Indica el nombre del indice al que vamos a enviar el documento.
-- `hosts`: Indica el `hostname` del servidor ElasticSearch.
-- `document_id`: Esta opción es **MUY** importante ya que permite que Logstash identifique el documento con un
-  identificador único, que a su vez permitirá a ElasticSearch saber cuando un documento ya existía previamente. En este
-  caso el documento OCDS tiene un id único llamado `ocid`.
+[Output ElasticSearch](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html)
 
-Como pudimos constatar la creación de un pipeline para procesamiento con Logstash es la codificación de un proceso
-lógico determinado. Cada dataset puede requerir distintos procesos, pero ahí radica el poder de Logstash que nos permite
-plasmar estos pasos de forma concisa y ordenada.
+These are the options we are going to use:
+- `index`: It shows the index name we will send the document to.
+- `hosts`: It indicates the `hostname` of the ElasticSearch server.
+- `document_id`: This is a **VERY** important option, given that it enables Logstash to identify the document with a
+  unique ID. Likewise, it enables ElasticSearch to recognize when a document already exists. In this
+  case, the OCDS document has a unique ID, named `ocid`.
+
+
+As we could see, a pipeline's creation for processing with Logstash is the codification of a determined logical process. Each dataset may require different processes, but here is where Logstash power lies: it allows us to show the steps concisely and orderly.
