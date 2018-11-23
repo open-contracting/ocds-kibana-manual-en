@@ -11,7 +11,7 @@ Open Contracting Partnership informs in September 2017 that 13 countries in Lati
 
 This guide has been created to increase the use and impact of data publication, import OCDS and analyze them visually and intuitively. Although all the examples are based on the Mexican case, we provide you with instructions to import any dataset that meets OCDS standard.
 
-We hope this is another small contribution that can help enhance the region's transparency and accountability. 
+We hope this is another small contribution that can help enhance the region's transparency and accountability.
 
 
 
@@ -19,26 +19,26 @@ We hope this is another small contribution that can help enhance the region's tr
    :maxdepth: 2
    :caption: 1. OCDS data and tools
 
-   C1/Section1
-   C1/Section2
+   C1/Seccion1
+   C1/Seccion2
 
 .. toctree::
   :maxdepth: 2
   :caption: 2. ELK installation and configuration
 
-  C2/Section1
-  C2/Section2
-  C2/Section3
-  C2/Section4
-  C2/Section5
+  C2/Seccion1
+  C2/Seccion2
+  C2/Seccion3
+  C2/Seccion4
+  C2/Seccion5
 
 
 .. toctree::
   :maxdepth: 2
   :caption: 3. Data Analysis
 
-  C3/Section1
-  C3/Section2
-  C3/Section3
-  C3/Section4
-  C3/Section5
+  C3/Seccion1
+  C3/Seccion2
+  C3/Seccion3
+  C3/Seccion4
+  C3/Seccion5
