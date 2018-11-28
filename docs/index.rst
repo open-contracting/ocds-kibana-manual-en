@@ -2,7 +2,7 @@ Contracting import and analysis in OCDS format with Elastic tools
 ==========================================================================================================
 
 This manual is an initiative of `Project on Organizing, Development,
-Education, and Research (PODER) <https://www.projectpoder.org/es>`_, `Open Data Latin American Initiative <https://idatosabiertos.org/>`_ and `Open Contracting Partnership (OCP) <https://www.open-contracting.org>`_ written by **Ricardo Vega**, **Martín Szyszlican** and **Eduard Martín-Borregón** with the supervision of Juan Pane and Yohanna Lisnichuk.
+Education, and Research (PODER) <https://www.projectpoder.org/es>`_, `Open Data Latin American Initiative <https://idatosabiertos.org/>`_ and `Open Contracting Partnership (OCP) <https://www.open-contracting.org>`_ written by **Ricardo Vega**, **Martín Szyszlican** and **Eduard Martín-Borregón** with the supervision of Juan Pane and Yohanna Lisnichuk. Translated by `Mariel Olivera <https://marielolivera.com/en/home/>`_.
 
 Introduction
 ------------

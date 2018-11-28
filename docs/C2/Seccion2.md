@@ -24,7 +24,7 @@ Each of these features will be backed up by Kibana, ElasticSearch and Logstash. 
 -  A Logstash pipeline ready to process OCDS data and index it in ElasticSearch
     - This pipeline will be into a Docker container to run it more easily.
 
-!["ELK Platform"](architecture.png "ELK Platform")
+!["ELK Platform"](arquitectura.png "ELK Platform")
 
 
 We will name **Server Container** to the server hosting ElasticSearch and Kibana, as this container will be running as long as this service is offered.

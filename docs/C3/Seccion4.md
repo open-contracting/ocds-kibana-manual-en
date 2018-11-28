@@ -8,7 +8,7 @@ Once you enter the visualization section, you can see a table with the already s
 
 The bar charts are used to compare the same range of data (for example, the total amount) in different instances. In this case, the government departments.  When we click this, a screen as the following will appear, with all blank values.
 
-!["Gráfico Barras"](GBarras.png "Bar Chart")
+!["Bar Chart"](GBarras.png "Bar Chart")
 
 This is the process to replicate the graphic: * **Y-Axis**
   * *Aggregation:* At this stage, we will choose how data will be added to our graphic. By default, we get "Count", but we should choose the "Sum" option to achieve the total values. A new dropdown named "Field" will open, and we will select `awards.value.amount`, in which field we find the contract value.
