@@ -4,7 +4,7 @@
 
 By requiring data-sharing in a structured, re-usable and machine readable form; Open data opens up new opportunities for analysis and citizen engagement and participation. The [Open Contracting Data Standard](https://www.open-contracting.org/data-standard/) was created to apply these principles to the complete contracting life-cycle; including planning, tender, award, contract and implementation.
 
-The data standard, designed and developed through an open process by [Open Contracting Partnership (OCP)](https://www.open-contracting.org/?lang=es), allows governments and cities around the world to share their contracting data, enabling greater transparency in public contracting, and supporting accessible and in-depth analysis of the efficiency, effectiveness, fairness, and integrity of public contracting systems. Additionally, the help desk team, staffed by Open Data Services Co-operative, is available to assist prospective users in their journey towards adoption of the standard. 
+The data standard, designed and developed through an open process by [Open Contracting Partnership (OCP)](https://www.open-contracting.org/?lang=en), allows governments and cities around the world to share their contracting data, enabling greater transparency in public contracting, and supporting accessible and in-depth analysis of the efficiency, effectiveness, fairness, and integrity of public contracting systems. Additionally, the help desk team, staffed by Open Data Services Co-operative, is available to assist prospective users in their journey towards adoption of the standard.
 
 The intention of this section is to introduce the reader to the standard, the use cases it was designed for and the basic concepts needed to apply it. Most of the content was taken from the official documentation of the standard; for a more thorough introductory walktrough, please refer to the [OCP getting started guide](http://standard.open-contracting.org/latest/en/getting_started/).
 
@@ -12,12 +12,12 @@ The intention of this section is to introduce the reader to the standard, the us
 
 The standard was designed with four main groups of user needs:
 
-* Achieving value for money for government
-* Strengthening the transparency, accountability and integrity of public contract
+* Achieving value for money in government
+* Strengthening the transparency, accountability and integrity of public procurement
 * Enabling the private sector to fairly compete for public contracts
 * Monitoring the effectiveness of service delivery
 
-To find out about who is using OCDS-compliant data around the globe and how they are doing it, have a look at the [OCP] website(http://www.open-contracting.org/). Four potential use cases for open contracting data are:
+To find out about who is using OCDS-compliant data around the globe and how they are doing it, have a look at the [OCP website](http://www.open-contracting.org/). Four potential use cases for open contracting data are:
 
 * Value for money in procurement: helping officials get good value for money during the procurement process, and analyzing whether these goals were achieved afterwards.
 * Detecting fraud and corruption: identifying red flags that might indicate corruption by studying individual procurements or networks based on funding, ownership and interests.

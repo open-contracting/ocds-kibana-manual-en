@@ -4,9 +4,9 @@ At the end of this section, you will have all you need to check and visualize OC
 
 In order to have a better understanding of this section, it is recommended to be familiar with the command terminal:
 
-* [Mac](https://www.soydemac.com/abrir-terminal-mac/)
+* [Mac](https://www.wikihow.com/Open-a-Terminal-Window-in-Mac)
 * [Windows](https://www.wikihow.com/Open-the-Command-Prompt-in-Windows)
-* [Linux/Ubuntu](https://elblogdeliher.com/como-moverse-por-los-directorios-en-la-terminal-de-ubuntu/)
+* [Linux/Ubuntu](https://help.ubuntu.com/community/UsingTheTerminal)
 
 ## Goals
 
@@ -131,7 +131,7 @@ and [jq](https://es.wikipedia.org/wiki/Jq).
 > give a user-friendly format to JSON data.
 > At a lager stage, this manual includes a brief introduction to `jq`.
 
---- 
+---
 Both programs can be installed locally. For example, for Linux Ubuntu, it can be done with an instruction such as:
 ```
 sudo apt-get install -y curl jq
@@ -151,7 +151,7 @@ In this [command line]((https://es.wikipedia.org/wiki/Bash) we can execute the f
 
 ---
 
-If you want to download the last 100 contracting processes and keep them in a `.json`file:
+If you want to download the last 100 contracting processes and keep them in a `.json` file:
 ```
 curl https://api.datos.gob.mx/v2/contratacionesabiertas | jq -crM ".results" > opencontracting_last_100.json
 ```

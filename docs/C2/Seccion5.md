@@ -8,7 +8,7 @@ It is possible to process, index and visualize any open dataset with this basic 
 
 To sum up, we highlight the following concepts:
 
-![Plataforma ELK](elk.png "Plataforma ELK")
+![Plataforma ELK](elk.png "ELK Platform")
 
 1. There are 3 components of ELK platform: ElasticSearch, Logstash y Kibana, each with a specific task:
     - ElasticSearch stores and indexes information, it is the "database".

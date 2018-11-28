@@ -22,17 +22,17 @@ Before starting, we should identify the fields we are going to work with. In our
 
 If you follow the image form:
 
-1. **Name:** The name to identify our field. For example:`tender.awardPeriod.duration` , to go on with the same OCDS dataset language. 
-1. **Language:** It is a dropdown with "painless" and "expression" options. We suggest you work with painless, given that it is the syntax we will become familiar in Discover, and which will surely be supported in next versions. 
+1. **Name:** The name to identify our field. For example:`tender.awardPeriod.duration` , to go on with the same OCDS dataset language.
+1. **Language:** It is a dropdown with "painless" and "expression" options. We suggest you work with painless, given that it is the syntax we will become familiar in Discover, and which will surely be supported in next versions.
 1. **Type:** Dropdown to choose the field type we will create. In this case, we are going to use "Number".
 1. **Format:** We will define the number as "Duration", and here more dropdowns will pop up. "Input format", where we will choose "Milliseconds" (because that is how we defined it in the formula); and the "Output format", such as "Days", given that we are looking for the amount of days. (Note: the option "Human Readable" makes the fields queries difficult). Also, we have a numeric field for decimals. We shall continue with 2 decimals due to author's preferences.
 1. **Popularity:** Kibana is calculating this numeric field according to use to show the highlighted fields in many screens of the application. If you want it highlighted, we suggest you set a high value from the moment you finish. In this case, we will choose a 10.
-1. **Script:** This is the field where we will make our script. 
+1. **Script:** This is the field where we will make our script.
 We suggest you read the [official guide](https://www.elastic.co/guide/en/elasticsearch/reference/6.x/search-request-script-fields.html) to have a deeper understanding. This is the script we will use:
     ```
     (doc['tender.awardPeriod.endDate'].value.getMillis() - doc['tender.awardPeriod.startDate'].value.getMillis())
     ```
-    What the scripts does it to bring the tender access start and end fields, show its values, convert them into milliseconds and subtract the end from the start. To make it a useful result and work in the rest of the platform, we have formatted it to days with two decimals. 
+    What the scripts does it to bring the tender access start and end fields, show its values, convert them into milliseconds and subtract the end from the start. To make it a useful result and work in the rest of the platform, we have formatted it to days with two decimals.
 
     Analyzing the script's elements in detail:  
     * `doc['Name.Field']` We can name our database's field in this way.  
@@ -40,6 +40,6 @@ We suggest you read the [official guide](https://www.elastic.co/guide/en/elastic
     * `.getMillis()` turns the value into milliseconds
     * ` - ` It is the subtraction operator, other mathematical operators can be used.
 
-    For more details, [inquire the complete syntax.](https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-api-reference.html)
+    For more details, [read the complete syntax.](https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-api-reference.html)
 
 7. **Create field:** This is the final button that creates the field for the whole application. In case of a script error, a warning message will pop up and it will not be processed in the application.

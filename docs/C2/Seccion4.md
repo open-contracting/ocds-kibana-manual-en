@@ -8,7 +8,7 @@ Now we have managed to start the platform, we can see in detail the collection t
 
 ## Available and required format
 
-The file obtained from gob.mx is in format [Record Package](http://standard.open-contracting.org/latest/es/schema/record_package/)
+The file obtained from gob.mx is in format [Record Package](http://standard.open-contracting.org/latest/en/schema/record_package/)
 
 > The record package's scheme describes the container structure to publish records.
 > The record content is based on the releases scheme. The package contains important metadata.
@@ -203,12 +203,7 @@ It would be transformed as:
   }
 }
 ```
-At the end, the `compiledRelease` property is removed; in the same way as  `releases`, `host` and `path.
-
-## Important
-
-When this block is over, each JSON line should have been turned into the desired format and will still be stored in the Logstash memory, ready to be sent to the next block: Output [output](4_Salida.md)
-
+At the end, the `compiledRelease` property is removed; in the same way as  `releases`, `host` and `path`.
 
 # Output
 
@@ -234,10 +229,10 @@ Here, we will proceed with two steps:
 1. Save all processed documents in a log file, one per line.
 1. Send these documents to ElasticSearch
 
-For the former, we will use the [Output File](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-file.html) Plugin, 
+For the former, we will use the [Output File](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-file.html) Plugin,
 and in the options we should specify the log file's name, which should be created if nonexistent and overwrite all previous information.
 
-We use another plugin with multiple options to send ElasticSearch the files. 
+We use another plugin with multiple options to send ElasticSearch the files.
 We will specify three of them, but we recommend to check the manual.
 
 [Output ElasticSearch](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html)

@@ -29,4 +29,4 @@ We may have different types of option values:
 - Arrays `option => [ "Text", 123, false ]`
     > Arrays are a different sort of sets
 
-[Next](2_Input.md)
+[Next](2_Entrada.md)

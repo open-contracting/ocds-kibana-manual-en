@@ -1,4 +1,4 @@
-# ELK Platforms to Analize OCDS format Contracting
+# ELK Platform for procurement data analysis in OCDS format
 
 As stated in this manual's introduction, analyzing data of Public Contracting in Mexico is a key task for the government correct democratic scrutiny.
 
@@ -58,6 +58,7 @@ Another advantage by using Docker is that it keeps stability between what is dev
     "Share" Download folder from my computer to the container. Inside the container, the file's name will change to `/input`
 
 To learn more about Containers and Docker, the following readings are recommended:
-- [Amazon Web Services - What is Docker?](https://aws.amazon.com/es/docker/)
-- [OpenWebinars - Docker](https://openwebinars.net/blog/docker-que-es-sus-principales-caracteristicas/)
-- [1and1.mx - Docker Installation](https://www.1and1.mx/digitalguide/servidores/configuracion/tutorial-docker-instalacion-y-primeros-pasos/)
+- [Amazon Web Services - What is Docker?](https://aws.amazon.com/docker/)
+- [Docker get started](https://docs.docker.com/get-started/)
+- [OpenWebinars - Docker (in spanish)](https://openwebinars.net/blog/docker-que-es-sus-principales-caracteristicas/)
+- [1and1.mx - Docker Installation (in spanish)](https://www.1and1.mx/digitalguide/servidores/configuracion/tutorial-docker-instalacion-y-primeros-pasos/)

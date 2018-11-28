@@ -4,7 +4,7 @@
 
 It is a set of tools that, when combined, creates a data management platform that enables monitoring, consolidating and analyzing them.
 
-This system contains the following tools: ElasticSearch, Logstash and Kibana. This set can be recognized as "stack ELK" or just "ELK". 
+This system contains the following tools: ElasticSearch, Logstash and Kibana. This set can be recognized as "ELK stack" or just "ELK".
 
 These tools have been created, maintained and distributed by [Elastic](https://www.elastic.co/) since 2012 and have grown according to the market needs. The first tool created was ElasticSearch in 2004 under the name of Compass, but its first official version appeared in 2010.
 
@@ -16,7 +16,7 @@ Elastic offers two kinds of products:
 
 ELK offers different solutions to meet the needs in data processing, monitoring and visualization. These solutions can be either paid or free, but what differentiates ELK from others is mainly:
 
-- **Capacity**: It offers many features that can be used in low-cost hardware. Minimum starting settings are needed and many optimizations are available. 
+- **Capacity**: It offers many features that can be used in low-cost hardware. Minimum starting settings are needed and many optimizations are available.
 - **Scalability**: ElasticSearch is a tool designed to manage TB of data. Its architecture enables it to expand quickly and easily.
 - **Flexibility**: The setting is flexible and it can adapt to any needs or environment.
 - **Access**: Elastic promotes plugins for its tools with free extra features in order to facilitate the use.
@@ -44,6 +44,6 @@ ELK platform has a linear architecture among its components.
 
 Have a closer look at each tool:
 
-- [ElasticSearch](https://manualkibanaocds.readthedocs.io/es/latest/C2/Seccion1/1_ElasticSearch.html)
-- [Logstash](https://manualkibanaocds.readthedocs.io/es/latest/C2/Seccion1/2_Logstash.html)
-- [Kibana](https://manualkibanaocds.readthedocs.io/es/latest/C2/Seccion1/3_Kibana.html)
+- [ElasticSearch](/en/latest/C2/Seccion1/1_ElasticSearch.html)
+- [Logstash](/en/latest/C2/Seccion1/2_Logstash.html)
+- [Kibana](/en/latest/C2/Seccion1/3_Kibana.html)
