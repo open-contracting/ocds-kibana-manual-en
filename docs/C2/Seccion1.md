@@ -2,9 +2,9 @@
 
 ## Introduction
 
-It is a set of tools that, when combined, creates a data management platform that enables monitoring, consolidating and analyzing them.
+It is a set of tools that creates a data management platform that enables monitoring, consolidating and analysis.
 
-This system contains the following tools: ElasticSearch, Logstash and Kibana. This set can be recognized as "ELK stack" or just "ELK".
+This system is conformed by ElasticSearch, Logstash and Kibana. This set can be recognized as "ELK stack" or just "ELK".
 
 These tools have been created, maintained and distributed by [Elastic](https://www.elastic.co/) since 2012 and have grown according to the market needs. The first tool created was ElasticSearch in 2004 under the name of Compass, but its first official version appeared in 2010.
 
@@ -17,10 +17,10 @@ Elastic offers two kinds of products:
 ELK offers different solutions to meet the needs in data processing, monitoring and visualization. These solutions can be either paid or free, but what differentiates ELK from others is mainly:
 
 - **Capacity**: It offers many features that can be used in low-cost hardware. Minimum starting settings are needed and many optimizations are available.
-- **Scalability**: ElasticSearch is a tool designed to manage TB of data. Its architecture enables it to expand quickly and easily.
-- **Flexibility**: The setting is flexible and it can adapt to any needs or environment.
-- **Access**: Elastic promotes plugins for its tools with free extra features in order to facilitate the use.
-- **Open Source**: Nowadays, open source offers competitive advantages over other platforms as it enables quick error corrections made by the community, extension corrections and even the user base extension. It allows the free use of tools, what increases the tools shared knowledge.
+- **Scalability**: ElasticSearch is a tool designed to manage terabytes of data. Its architecture enables it to expand quickly and easily.
+- **Flexibility**: The settings are flexible and it can adapt to any needs or environment.
+- **Access**: Elastic promotes the creation of plugins. A wide array of plugins are available to extend Elastic's functionality and ease of use.
+- **Open Source**: Nowadays, open source offers competitive advantages over other platforms as it enables crowdsourced quick error corrections, extension corrections and even the user base extension. It allows the free use of tools, which in turn increases the tool's shared knowledge.
 
 ## Components
 
@@ -28,13 +28,13 @@ ELK consists of three essential pillars: ElasticSearch, Logstash and Kibana.
 
 ![ELK Platform](elk.png "ELK Platform")
 
-Each component has a specific feature and architecture. Hereunder, we will explain how they are related and how we can use them as a platform.
+Each component has a specific feature and architecture. Let's see how they are related and how we can use them as a platform.
 
 ## Platform Architecture
 
-In this chapter, we will deepen the Elastic tools use to analyze Mexican Open Contracting data. For this, it is necessary to understand better how the different tools are related before we explain how we will import data.
+In this chapter, we will take an in-depth look into how Elastic tools have been used to analyze Mexican Open Contracting data. Before digging into data import, let's see how tools interact.
 
-ELK platform has a linear architecture among its components.
+ELK platform has a linear architecture.
 
 ![ELK Stack](elk_stack.jpg "ELK Stack")
 
