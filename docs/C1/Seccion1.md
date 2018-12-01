@@ -12,17 +12,17 @@ The intention of this section is to introduce the reader to the standard, the us
 
 The standard was designed with four main groups of user needs:
 
-* Achieving value for money in government
-* Strengthening the transparency, accountability and integrity of public procurement
-* Enabling the private sector to fairly compete for public contracts
-* Monitoring the effectiveness of service delivery
+* Proper allocation of government spending
+* Strengthening transparency, check and balances, and integrity of public procurement
+* Enabling the private sector to fairly compete for public procurement
+* Thorough Quality assurance
 
-To find out about who is using OCDS-compliant data around the globe and how they are doing it, have a look at the [OCP website](http://www.open-contracting.org/). Four potential use cases for open contracting data are:
+To find out about who is using OCDS-compliant data around the globe and how they are doing it, visit the [OCP website](http://www.open-contracting.org/). Four potential use cases for open contracting data are:
 
-* Value for money in procurement: helping officials get good value for money during the procurement process, and analyzing whether these goals were achieved afterwards.
+* Expenditure efficiency: helping officials make sure money is not wasted, and goals are met.
 * Detecting fraud and corruption: identifying red flags that might indicate corruption by studying individual procurements or networks based on funding, ownership and interests.
-* Competing for public contracts: allowing private firms to understand the potential pipeline of procurement opportunities by looking at information related to past and current procurements.
-* Monitoring Service Delivery: helping interested actors to leverage traceability in the procurement process for monitoring purposes, linking budgets and donor data to the contracts and results.
+* Biddings: allow private firms to understand the potential pipeline of procurement opportunities by looking at information related to past and current procurements.
+* Monitoring Service Delivery: helping interested actors to track procurement processes for monitoring purposes, linking budgets and donor data to the contracts and results.
 
 ### The contracting process
 
@@ -30,7 +30,7 @@ The standard defines a contracting process as:
 
 > All the planning, tendering information, awards, contracts and contract implementation information related to a single initiation process.
 
-The standard covers all the stages of a contracting process, even though some processes might not involve all possible steps. For identification purposes, all contracting processes are assigned a unique Open Contracting ID (ocid), which can be used to join data from different stages. In order to avoid ocid clashes between publishers, a publisher can prepend a prefix to locally generated identifiers. Publishers are encouraged to register their prefix [here](http://standard.open-contracting.org/latest/en/implementation/registration/).
+The standard covers all the stages of a contracting process, even though some processes might not involve all possible steps. For identification purposes, all contracting processes are assigned a unique Open Contracting ID (ocid), which can be used to join data from different stages. In order to avoid OCID clashes between publishers, a publisher can prepend a prefix to locally generated identifiers. Publishers are encouraged to register their prefix [here](http://standard.open-contracting.org/latest/en/implementation/registration/).
 
 
 
@@ -38,9 +38,9 @@ The standard covers all the stages of a contracting process, even though some pr
 
 Contracting processes are represented as **documents** in OCDS. Each document is made up of several **sections**, mentioned below:
 
-* **Release metadata**: contextual information about each release of data;
+* **Release metadata**: contextual information about each data release;
 * **Parties**: information about the organizations and other participants involved in the contracting process;
-* **Planning**: information about the goals, budgets and projects a contracting process relates to;
+* **Planning**: information about goals, budgets and projects a contracting process relates to;
 * **Tender**: information about how a tender will take place, or has taken place;
 * **Awards**: information on awards made as part of a contracting process;
 * **Contract**: information on contracts signed as part of a contracting process;
@@ -75,7 +75,7 @@ There are two types of documents defined in the standard:
 
 ### Fields
 
-Each section may contain several **fields** specified in the standard, which are used to represent data. These objects can appear several times in different sections of the same document; for example, items can occur in tender (to indicate the items that a buyer wishes to buy), in an award object (to indicate the items that an award has been made for) and in a contract object (to indicate the items listed in the contract). Some example fields, accompanied by corresponding JSON snippets, are presented below
+Each section may contain several **fields** specified in the standard, which are used to represent data. These objects can appear several times in different sections of the same document; for example, items can occur in tender (to indicate the items that a buyer wishes to buy), in an award object (to indicate the items that an award has been made for) and in a contract object (to indicate the items listed in the contract). Some example fields, accompanied by corresponding JSON snippets, are presented below.
 
 #### Parties (Organizations)
 
@@ -187,7 +187,7 @@ Each section may contain several **fields** specified in the standard, which are
 
 In addition to regular fields, the OCDS schema defines some fields that can only be used in certain sections, e.g. *titles* and *descriptions* of tenders, awards and contracts. In some cases, publishers may require fields that are not provided by the core schema; an **extension** allows defining new fields that can be used in these cases. A list of available extensions is available [here](http://standard.open-contracting.org/latest/en/extensions); if no existing extension addresses a publisher's needs, the publisher is encouraged to collaborate on the creation of a new community extension.
 
-Another concept worth mentioning is that of codelists. Codelists are sets of case sensitive  strings with associated labels, available in each language OCDS has been translated into. Publishers should use codelist values whenever possible to map their existing classification systems; if needed, detail fields can be used to provide more detailed classification information. There are two types of codelists:
+Another concept worth mentioning is codelists. Codelists are sets of case sensitive strings with associated labels, available in several languages. Publishers should use codelist values whenever possible to map their existing classification systems; if needed, detail fields can be used to provide more detailed classification information. There are two types of codelists:
 
 * **Closed codelists** are fixed sets of values. If a field is associated with a closed codelist, it should only accept an option from the published list.
 * **Open codelists** are sets of recommended values. If a field is associated with an open codelist, it accepts options from the list but also other values.
