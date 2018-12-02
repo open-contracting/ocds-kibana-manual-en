@@ -1,8 +1,6 @@
 # Logstash
 
-Data collection, processing and redistribution engine Logstash is a valuable tool to work with different data sources or decentralized data. We could describe Logstash as a machine that takes data from the indicated locations (collection), it transforms it (processing), and it can later send data to other systems in a new format (redistribution).
-
-
+Logstash is a Data collection, processing, and redistribution engine; a valuable tool to work with different data sources or decentralized data. We could describe Logstash as a machine that takes data from the indicated locations (collection), transforms it (processing), and sends it to other systems in a new format (redistribution).
 
 ![Logstash](../logstash_001.png "Logstash")
 
@@ -19,19 +17,17 @@ This is very useful in systems that create thousands of records per minute (or s
 
 As regards to final data with only one information source with either one or many files, it is also possible to configure Logstash for them to be read just once.
 
-For achieving this, Logstash uses input plugins: [Input Plugins](https://www.elastic.co/guide/en/logstash/current/input-plugins.html, that allow us to read information in many different ways, formats and systems.
+For achieving this, Logstash uses input plugins: [Input Plugins](https://www.elastic.co/guide/en/logstash/current/input-plugins.html) that allow us to read information in many different ways, formats and systems.
 
 ## Data Processing
 
-Once Logstash has collected all new data, it is possible to give instructions to Logstash about the data transformations we want to make. For example, we can take data in [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) and turn it into  [JSON](https://en.wikipedia.org/wiki/JSON). We could also take a file with its own non-standardized format and turn it into another one already standardized.
+Once Logstash has collected all new data, it is possible to give instructions to Logstash about the data transformations we want to make. For example, we can take data in [CSV](https://es.wikipedia.org/wiki/Valores_separados_por_comas) and turn it into  [JSON](https://en.wikipedia.org/wiki/JSON). We could also take a file with its own non-standardized format and turn it into another one already standardized.
 
-
-
-For achieving this, Logstash has at its disposal a set of plugins called "filter":  [Filter plugins](https://www.elastic.co/guide/en/logstash/current/filter-plugins.html). Each filter allows to make a specific transformation and can be used in combinations.
+To achieve this, Logstash has a set of plugins called "filter":  [Filter plugins](https://www.elastic.co/guide/en/logstash/current/filter-plugins.html). Each filter allows to make a specific transformation and can be used in combinations.
 
 ## Redistribution or Data output
 
-Once the Logstash Pipeline has collected and transformed the information, we can indicate what to do with the result. We have many options: we can process new processed data to new files or data can be sent via e-mail, but the most commonly used output is to send this information to an ElasticSearch database.
+Once the Logstash Pipeline has collected and transformed the information, we can tell Logstash what to do with the result. We have many options: we can process new processed data to new files or data can be sent via e-mail, but the most commonly used output is to send this information to an ElasticSearch database.
 
 The official output plugins options are listed in this page: [Output Plugins](https://www.elastic.co/guide/en/logstash/current/output-plugins.html)
 
@@ -39,6 +35,6 @@ The official output plugins options are listed in this page: [Output Plugins](ht
 
 **Note about Logstash and ElasticSearch** 
 
-Using these two tools together give many benefits, it has to be noted that we can send data directly to ElasticSearch **without** using Logstash.
+While using these two tools together give many benefits, it has to be noted that we can send data directly to ElasticSearch **without** using Logstash.
 We can achieve this by using an ElasticSearch feature known as "Ingest" or "Ingest Pipeline", which turns the cluster node into a node specialized in information reception and processing.
-However, we will give no further details about this modality, given that it is not used in this manual. Although it is operating, it has limited options and our ElasticSearch cluster takes longer during processing.
+However, we will give no further details about this modality, given that it is not used in this manual. Though operating, it has limited options and is a bigger burden on an ElasticSearch cluster.
