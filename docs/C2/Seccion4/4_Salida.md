@@ -20,22 +20,20 @@ output {
 
 Here, we will proceed with two steps:
 1. Save all processed documents in a log file, one per line.
-1. Send these documents to ElasticSearch
+1. Send these documents to ElasticSearch.
 
-For the former, we will use the [Output File](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-file.html) Plugin, 
+For the former, we will use the [Output File Plugin](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-file.html), 
 and in the options we should specify the log file's name, which should be created if nonexistent and overwrite all previous information.
 
-We use another plugin with multiple options to send ElasticSearch the files. 
-We will specify three of them, but we recommend to check the manual.
+To send ElasticSearch the files, we will use another plugin. This plugin has multiple options,but in this case we will focus on three of them. We recommend to check the manual.
 
 [Output ElasticSearch](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html)
 
 These are the options we are going to use:
-- `index`: It shows the index name we will send the document to.
-- `hosts`: It indicates the `hostname` of the ElasticSearch server.
-- `document_id`: This is a **VERY** important option, given that it enables Logstash to identify the document with a
-  unique ID. Likewise, it enables ElasticSearch to recognize when a document already exists. In this
+- `index`: It shows the index name the document will be sent to.
+- `hosts`: It indicates the `hostname` of ElasticSearch's server.
+- `document_id`: This is a **VERY** important option. It enables Logstash to identify the document with a
+  unique ID. Likewise, which in turn will enable ElasticSearch to detect if a document already exists. In this
   case, the OCDS document has a unique ID, named `ocid`.
-
 
 [Previous](../Section4.md)
