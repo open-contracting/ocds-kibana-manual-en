@@ -17,13 +17,13 @@ filter {
 
 This could be the Pipeline's most complicated process, and also the most interesting and powerful for our tasks.
 
-This block is composed by a set of filters that behave sequentially. In this case, we will just use a filter: ruby
+This block is composed by a set of filters that behave sequentially. In this case, we will just use a filter: Ruby
 
 ### [Ruby Filter](https://www.elastic.co/guide/en/logstash/current/plugins-filters-ruby.html)
 
-> This filter is more advanced and requires programming knowledge in Ruby language.
+> This filter is more advanced and requires Ruby knowledge.
 
-This section's objective is to take the `compiledRelease` property of each JSON file received and, in turn, read each property that composes it as well as copy it over the file root.
+This section's objective is to take the `compiledRelease` property of each JSON file received and, in turn, read each property that composes it, and copy it over the file root.
 
 **Example**
 ```
@@ -31,7 +31,7 @@ This section's objective is to take the `compiledRelease` property of each JSON 
   "compiledRelease": {
     "a": "A",
     "bc": [ "B", "C" ],
-    "third": {
+    "tercero": {
       "a": "3.A",
       "b": "3.B"
     }
@@ -43,13 +43,13 @@ It would be transformed as:
 {
   "a": "A",
   "bc": [ "B", "C" ],
-  "third": {
+  "tercero": {
     "a": "3.A",
     "b": "3.B"
   }
 }
 ```
-At the end, the `compiledRelease` property is removed; in the same way as  `releases`, `host` and `path.
+Finally, the `compiledRelease` property is removed in the same way as  `releases`, `host` and `path.
 
 ## Important
 
