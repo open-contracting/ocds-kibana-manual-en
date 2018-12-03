@@ -8,7 +8,7 @@ Once you enter the visualization section, you can see a table with the already s
 
 The bar charts are used to compare the same range of data (for example, the total amount) in different instances. In this case, the government departments.  When we click this, a screen as the following will appear, with all blank values.
 
-!["Gráfico Barras"](BChart.png "Bar Chart")
+!["Bar Chart"](GBarras.png "Bar Chart")
 
 This is the process to replicate the graphic: * **Y-Axis**
   * *Aggregation:* Here, we will choose how data will be added to our graphic. By default, we get "Count", but we should choose the "Sum" option to get the total values. A new dropdown meny named "Field" will open, and we will select `awards.value.amount`, which is the field containing the contract value.
@@ -29,7 +29,7 @@ When you have the panel complete, you should click play (button with blue backgr
 
 We can use the pie charts to know each element's weight (contracting procedures) out of the set (all the dataset).
 
-!["Grafico de tarta"](GTarta1.png "Grafico de tarta")
+!["Pie chart"](GTarta1.png "Pie chart")
 
 This is the process to replicate the graph:
 * **Metrics**
@@ -53,7 +53,7 @@ After clicking "play", a graph will be displayed. But once visualized, we want t
 
 After clicking play, we will get the following graph, showing the top 5 dependencies in the dataset that had done the same type of procurement.
 
-!["Grafico de tarta2"](GTarta2.png "Grafico de tarta2")
+!["Pie chart2"](GTarta2.png "Pie Chart2")
 
 Moving on with the analysis, we now want to change the aggregation. We do not want it to be an operation, but the total sum per procedure and per dependency.
 * **Metrics**
@@ -61,7 +61,7 @@ Moving on with the analysis, we now want to change the aggregation. We do not wa
 
 We click play again, which shows us the following graph:
 
-!["Grafico de tarta3"](GTarta3.png "Grafico de tarta3")
+!["Pie Chart 3"](GTarta3.png "Pie chart3")
 
 We can continue analyzing, adding and removing values. In order to speed up the process, we have three buttons next to each "Split Slices" text that allow us to "Display/hide", "Change order of appearance" and "Delete slice". Every time we make a change, we need to click the play button.
 
@@ -69,7 +69,7 @@ We can continue analyzing, adding and removing values. In order to speed up the 
 
 Line charts allow us to show the evolution over time. In this occasion, we will make a graph with two values: count and value.
 
-!["Grafico de lineas"](Glineas.png "Grafico de lineas")
+!["Line Chart"](Glineas.png "Line chart")
 
 * **Metrics**
   * *Aggregation:* We will choose the "Sum" option and `awards.value.amount` in the new *Field* dropdown menu.
