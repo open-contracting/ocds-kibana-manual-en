@@ -4,9 +4,9 @@ At the end of this section, you will have all you need to check and visualize OC
 
 In order to have a better understanding of this section, it is recommended to be familiar with the command terminal:
 
-* [Mac](https://www.soydemac.com/abrir-terminal-mac/)
+* [Mac](https://www.wikihow.com/Open-a-Terminal-Window-in-Mac)
 * [Windows](https://www.wikihow.com/Open-the-Command-Prompt-in-Windows)
-* [Linux/Ubuntu](https://elblogdeliher.com/como-moverse-por-los-directorios-en-la-terminal-de-ubuntu/)
+* [Linux/Ubuntu](https://help.ubuntu.com/community/UsingTheTerminal)
 
 ## Goals
 
@@ -74,10 +74,10 @@ carpeta/contratacionesabiertas_bulk_paquete3.json
 Let's suppose that the files were downloaded and unzipped inside the same operative system Download file. Its path **should be**
 [<sup>1</sup>](https://en.wikipedia.org/wiki/Home_directory#Default_home_directory_per_operating_system)
 
-* **Linux/Ubuntu/Mac**: `/home/{nombre de usuario}/Descargas`
-    We can shorten it as `$HOME/Descargas`
-* **Windows**: `C:\Users\{nombre de usuario}\Descargas`
-    We can shorten it as `%HOMEPATH%\Descargas`
+* **Linux/Ubuntu/Mac**: `/home/{username}/Download`
+    We can shorten it as `$HOME/Download`
+* **Windows**: `C:\Users\{username}\Download`
+    We can shorten it as `%HOMEPATH%\Download`
 
 When it is confirmed or we could get the path to the files folder, we can continue.
 
@@ -97,11 +97,11 @@ Once finished, we can execute the upload process according to the available oper
 
 **Linux/Ubuntu o Mac**
 ```
-docker run --net="host" -v $HOME/Descargas:/input logstash-sfp-compranet-ocds
+docker run --net="host" -v $HOME/Download:/input logstash-sfp-compranet-ocds
 ```
 **Windows**
 ```
-docker run --net="host" -v %HOMEPATH%\Descargas:/input logstash-sfp-compranet-ocds
+docker run --net="host" -v %HOMEPATH%\Download:/input logstash-sfp-compranet-ocds
 ```
 >This command will use the container that is already executing the data processing and upload. For more information, please check the [technical documentation](https://github.com/ProjectPODER/ManualKibanaOCDS/tree/master/pipeline) of this
 > process.
@@ -138,7 +138,7 @@ sudo apt-get install -y curl jq
 For Windows or Mac, we should download the executable files separately, but we can also use the
 *docker container* included in the current code. To this effect, we should only execute the following docker command:
 ```
-docker run --rm -it -v $HOME/Descargas:/input --entrypoint=bash logstash-sfp-compranet-ocds
+docker run --rm -it -v $HOME/Download:/input --entrypoint=bash logstash-sfp-compranet-ocds
 ```
 > Remember that `$HOME/` is a shortcut only for Linux and Mac, in Windows we shall use `%HOMEPATH%\`
 
