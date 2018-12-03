@@ -9,8 +9,8 @@ The file from gob.mx is in [Record Package format](http://standard.open-contract
 
 ```
 [
-    { paquete de registros ocds },
-    { paquete de registros ocds },
+    { ocds record packages },
+    { ocds record package },
 ]
 ```
 
@@ -21,20 +21,20 @@ This translates into a structure similar to this one:
     {
         "uri": "..."
         "version": "..."
-        ... otros meta datos ...
+        ... another metadata ...
         "records": [
-            { documento ocds },
-            { documento ocds },
+            { ocds document },
+            { ocds document },
             ...
         ]
     },
     {
         "uri": "..."
         "version": "..."
-        ... otros meta datos ...
+        ... another metadata ...
         "records": [
-            { documento ocds },
-            { documento ocds },
+            { ocds document },
+            { ocds document },
             ...
         ]
     }
@@ -44,8 +44,8 @@ This translates into a structure similar to this one:
 In order to work with this document, we will need to convert it to a format where each line of the file
 is an OCDS document.
 ```
-{ documento ocds }
-{ documento ocds }
+{ ocds document }
+{ ocds document }
 ```
 
 This way, we can process it with Logstash and later send one document at a time to ElasticSearch.
@@ -56,7 +56,7 @@ An open source and MIT license tool is available to work with JSON files: [jq](h
 
 With this tool, we can manipulate the JSON document and turn it into the required format. Once we have installed this tool and have `jq` command available, we can use a command like this:
 ```
-jq -crM ".[].records[]" "archivo.json" > "archivo.ocds_por_linea"
+jq -crM ".[].records[]" "file.json" > "file.ocds_per_line"
 ```
 > We recommend you check the `jq` file, but now we will explain what this specific command does.
 
@@ -66,8 +66,8 @@ jq
     -r = Presents the JSON document in values without special formats
     -M = ´Monochromatic
     ".[].records[]" = Jq filter
-    "archivo.json" = File to be read
-    "archivo.ocds_por_linea" = The file created as a result
+    "file.json" = File to be read
+    "filer.ocds_por_linea" = The file created as a result
 ```
 ### Jq filter and data structure
 
