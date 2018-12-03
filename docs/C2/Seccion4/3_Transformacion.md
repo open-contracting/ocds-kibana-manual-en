@@ -31,7 +31,7 @@ This section's objective is to take the `compiledRelease` property of each JSON 
   "compiledRelease": {
     "a": "A",
     "bc": [ "B", "C" ],
-    "tercero": {
+    "third": {
       "a": "3.A",
       "b": "3.B"
     }
@@ -43,7 +43,7 @@ It would be transformed as:
 {
   "a": "A",
   "bc": [ "B", "C" ],
-  "tercero": {
+  "third": {
     "a": "3.A",
     "b": "3.B"
   }
