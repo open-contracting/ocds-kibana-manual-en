@@ -13,43 +13,43 @@ The main actions, both to search and configure the screen visualization are:
 
 <table border=1>
     <tr>
-        <th>Acción</td>
-        <th>Comando</td>
-        <th>Ejemplo</td>
+        <th>Action</td>
+        <th>Command</td>
+        <th>Example</td>
     </tr>
     <tr>
-        <td>Buscar en cualquier campo</td>
+        <td>Search in any field</td>
         <td>string</td>
         <td>México</td>
     </tr>
     <tr>
-        <td>Buscar en campo específico</td>
-        <td>campo:string</td>
+        <td>Search in specific field</td>
+        <td>field:string</td>
         <td>buyer.name:México</td>
     </tr>
     <tr>
-        <td>Buscar texto específico en campo específico</td>
-        <td>campo:"string"</td>
-        <td>buyer.name:"Telecomunicaciones de México"</td>
+        <td>Search specific text in specific field</td>
+        <td>field:"string"</td>
+        <td>buyer.name:"Mexican Telecommunications"</td>
     </tr>
     <tr>
-        <td>Buscar dos textos en un campo</td>
-        <td>campo:("string" OR "string")</td>
-        <td>buyer.name:("Telecomunicaciones de México" OR " Tecnológico Nacional de México")</td>
+        <td>Search two texts in a field</td>
+        <td>field:("string" OR "string")</td>
+        <td>buyer.name:("Mexican Telecommunications" OR " Institute of Technology of Mexico")</td>
     </tr>
     <tr>
-        <td>Buscar en dos campos a la vez</td>
-        <td>campo:"string" AND campo:"string"</td>
-        <td>buyer.name:"Telecomunicaciones de México" AND tender.title:servicios</td>
+        <td>Search in two fields simultaneously</td>
+        <td>field:"string" AND field:"string"</td>
+        <td>buyer.name:"Mexican Telecommunications" AND tender.title:services</td>
     </tr>
     <tr>
-        <td>Más grande o más pequeño</td>
-        <td>campo:>valor</td>
+        <td>Bigger or smaller</td>
+        <td>field:>value</td>
         <td>contracts.value.amount:(>100000 AND <1000000)</td>
     </tr>
     <tr>
-        <td>Wildcards, valores desconocidos</td>
-        <td>c?mp*</td>
+        <td>Wildcards, unknown values</td>
+        <td>f?ield*</td>
         <td>M?xic*</td>
     </tr>
 </table>
