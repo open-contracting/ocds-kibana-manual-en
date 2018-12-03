@@ -6,7 +6,7 @@ We have used [shuf](https://en.wikipedia.org/wiki/Shuf) to create smaller and ha
 
 Such as:
 ```
-shuf -n NUMERO_ENTRADAS_DESEADAS -o OUTPUTFILE INPUTFILE
+shuf -n DESIRED_INPUT_NUMBER -o OUTPUTFILE INPUTFILE
 ```
 
 Example:
