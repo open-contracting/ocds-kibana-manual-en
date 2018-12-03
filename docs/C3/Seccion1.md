@@ -7,7 +7,7 @@ Kibana is an ElasticSearch data analysis and visualization tool integrated in th
 If you want to access this tool, you need to enter an URL (if you are using an instance of PODER, enter  [kibana.quienesquien.wiki](https://kibana.quienesquien.wiki/)) and log in. Multi-user functions depend on each instance. For this reason, we will not explain them here. In any case, it is important to warn you that you may access a fresh instance or one with previous saved searches, visualizations and dashboards.
 
 There are several actions that can be performed with Kibana, but in this manual we will only discuss four sections.
-* [Discover](https://manualkibanaocds.readthedocs.io/es/latest/C3/Seccion2.html)
-* [Management](https://manualkibanaocds.readthedocs.io/es/latest/C3/Seccion3.html)
-* [Visualize](https://manualkibanaocds.readthedocs.io/es/latest/C3/Seccion4.html)
-* [Dashboards](https://manualkibanaocds.readthedocs.io/es/latest/C3/Seccion5.html)
+* [Discover](/en/latest/C3/Seccion2.html)
+* [Management](/en/latest/C3/Seccion3.html)
+* [Visualize](/en/latest/C3/Seccion4.html)
+* [Dashboards](/en/latest/C3/Seccion5.html)
