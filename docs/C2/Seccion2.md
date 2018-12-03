@@ -1,4 +1,4 @@
-# ELK Platform to Analize OCDS format Data Procurement
+# ELK platform to analize procurement data in OCDS format
 
 As stated in this manual's introduction, analyzing data of Public Procurement in Mexico is a key task for government correct democratic scrutiny.
 
