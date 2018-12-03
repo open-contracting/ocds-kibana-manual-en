@@ -10,7 +10,7 @@ Kibana is the GUI of ELK platform, and it allows to make analysis, queries and v
 
 One of Kibana's most basic features is to explore data, document by document, or through specialized queries.
 
-!["Explorar los datos con Kibana"](../kibana_004.png "Explorar los datos con Kibana")
+!["Discover data with Kibana"](../kibana_004.png "Explore data with Kibana")
 
 We will learn more about the language ([Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/6.4/query-dsl.html)) that Kibana and ElasticSearch use to build more advanced queries.
 
@@ -21,7 +21,7 @@ With this function, we can create graphs, maps and other type of visualizations 
 
 > To make maps, our documents should contain information such as geographical coordinates. Our documents should contain numeric data to make graphs with sums or totals.
 
-!["Visualizando los datos con Kibana"](../kibana_005.png "Visualizando los datos con Kibana")
+!["Visualizing data with Kibana"](../kibana_005.png "Visualizing data with Kibana")
 
 ## Create and share dashboards
 
@@ -39,8 +39,8 @@ Some advanced features require buying a license from Elastic.co. In this manual,
 
 ## More examples
 
-!["Interfaz Kibana"](../kibana_001.jpg "Interfaz Kibana")
+!["Kibana Interface"](../kibana_001.jpg "Kibana Interface")
 
-!["Interfaz Kibana"](../kibana_002.jpg "Interfaz Kibana")
+!["Kibana Interface"](../kibana_002.jpg "Kibana Interface")
 
-!["Interfaz Kibana"](../kibana_003.jpg "Interfaz Kibana")
+!["Kibana Interface"](../kibana_003.jpg "Kibana Interface")
