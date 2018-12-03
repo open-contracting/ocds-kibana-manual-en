@@ -10,7 +10,7 @@ This distributed architecture enables an ElasticSearch database to continue work
 
 In the same way ElasticSearch distributes information, it also distributes the data query processing. When we make a database search and this information is distributed, each node has the task of processing this query and return the available information. In the end, the system as a whole will create the final result, joining the segments given by each node.
 
-For this reason, a system based in ElasticSearch and appropriately configured can make complex queries with large amounts of data, and still keep a high performance for the final user, regardsless their location.
+For this reason, a system based in ElasticSearch and appropriately configured can make complex queries with large amounts of data, and still keep a high performance for the final user, regardless their location.
 
 ## ElasticSearch Concepts
 
