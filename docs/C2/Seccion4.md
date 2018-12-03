@@ -8,15 +8,15 @@ Now that the platform is up and running, we can look in depth into the collectio
 
 ## Available and required format
 
-The file obtained from gob.mx is in format [Record Package](http://standard.open-contracting.org/latest/es/schema/record_package/)
+The file obtained from gob.mx is in format [Record Package](http://standard.open-contracting.org/latest/en/schema/record_package/)
 
 > The record package's scheme describes the structure used by the container to publish records.
 > The record content is based on the releases scheme. The package contains important metadata.
 
 ```
 [
-    { paquete de registros ocds },
-    { paquete de registros ocds },
+    { ocds record package },
+    { ocds record package },
 ]
 ```
 
@@ -27,10 +27,10 @@ This translates into a structure similar to this one:
     {
         "uri": "..."
         "version": "..."
-        ... otros meta datos ...
+        ... another metadata ...
         "records": [
-            { documento ocds },
-            { documento ocds },
+            { ocds document },
+            { ocds document },
             ...
         ]
     },
@@ -72,8 +72,8 @@ jq
     -r = Presents the JSON document in values without special formats
     -M = ´Monochromatic
     ".[].records[]" = Jq filter
-    "archivo.json" = File to be read
-    "archivo.ocds_por_linea" = The file created as a result
+    "file.json" = File to be read
+    "file.ocds_per_line" = The file created as a result
 ```
 ### Jq filter and data structure
 
@@ -111,27 +111,27 @@ Logstash Pipelines definitions use a similar language to simplified programming 
 
 Each filter or plugin is defined by a block:
 ```
-bloque {
+block {
 
 }
 ```
 
 Sometimes these blocks may be empty
 ```
-bloque { }
+block { }
 ```
 
 But we will commonly use options and arguments for these blocks, which are defined as:
 ```
-bloque { opcion => valor }
+block { option => value }
 ```
 
 We may have different types of option values:
 
-- Text `opcion => "Texto"`
-- Numeric `opcion => 123`
-- Boolean (True / False) `opcion => true` or `opcion => false`
-- Arrays `opcion => [ "Texto", 123, false ]`
+- Text `option => "Text"`
+- Numeric `option => 123`
+- Boolean (True / False) `option => true` or `option => false`
+- Arrays `option => [ "Text", 123, false ]`
     > Arrays are a different sort of sets
 
 ## Pipeline
@@ -184,7 +184,7 @@ This section's objective is to take the `compiledRelease` property of each JSON 
   "compiledRelease": {
     "a": "A",
     "bc": [ "B", "C" ],
-    "tercero": {
+    "third": {
       "a": "3.A",
       "b": "3.B"
     }
@@ -196,7 +196,7 @@ It would be transformed as:
 {
   "a": "A",
   "bc": [ "B", "C" ],
-  "tercero": {
+  "third": {
     "a": "3.A",
     "b": "3.B"
   }
