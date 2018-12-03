@@ -8,7 +8,7 @@ Now that the platform is up and running, we can look in depth into the collectio
 
 ## Available and required format
 
-The file obtained from gob.mx is in format [Record Package](http://standard.open-contracting.org/latest/es/schema/record_package/).
+The file obtained from gob.mx is in format [Record Package](http://standard.open-contracting.org/latest/es/schema/record_package/)
 
 > The record package's scheme describes the structure used by the container to publish records.
 > The record content is based on the releases scheme. The package contains important metadata.
