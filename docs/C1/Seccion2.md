@@ -12,17 +12,11 @@ Since 2015 different Mexican Public administration projects have emerged in orde
 
 Furthermore, it is worth noting the effort made by [Open Contracting Partnership in Mexico](https://www.contratacionesabiertas.mx/) to translate OCDS into Spanish; other organizations that publish in OCDS are [National Institute for Transparency, Access to Information and Personal Data Protection](http://contratacionesabiertas.inai.org.mx), Mexico City Airport Group that publishes [contracts to build the New Airport](https://datos.gob.mx/nuevoaeropuerto/), the Secretariat of Communications and Transportation publishes [contracts related to Shared Network project](https://datos.gob.mx/redcompartida/). At a subnational level, we can find [Secretariat of Planning, Administration and Finance of the Government of Jalisco](https://contratacionesabiertas.jalisco.gob.mx/contratosabiertos/).
 
-## OCDS Data in Latin America
+## OCDS Data in Latin America and the rest of the world
 
-Along with Mexico, five more countries in Latin America have six OCDS datasets:
-* [ChileCompra](http://www.chilecompra.cl/)
-* [Colombia Compra Eficiente](https://www.colombiacompra.gov.co/transparencia/gestion-documental/datos-abiertos)
-* [The Public-Private Partnerships In Honduras](http://app.sisocs.org/index.php?r=Ciudadano/index)
-* [Open Contracting in Paraguay](https://www.contrataciones.gov.py/datos/api/v2/#!/ocds)
-* [Open Data Portal of the Paraguay's Ministry of Finance](https://datos.hacienda.gov.py/)
-* [Compras Estatales Uruguay, by the Public Procurement and Contracting Agency](https://www.comprasestatales.gub.uy/inicio/datos-abiertos/)
+Along with Mexico, several more countries in Latin America and the rest of the world have OCDS datasets, the Open Contracting Partnership mantains a full list, updated quarterly, of [OCDS Publishers](https://www.open-contracting.org/why-open-contracting/worldwide/#/).
 
-In the manual of [OCDS Kingfisher tool](https://ocdskingfisher.readthedocs.io/en/master/index.html), it is explained how to download and import them.
+Also the [OCDS Kingfisher tool](https://ocdskingfisher.readthedocs.io/en/master/index.html) allows for downloading them and importing them into a database.
 
 ## Data for this manual
 As we have mentioned in the previous section, we will be using data published by the Ministry of Finance and Public Credit's Budget Transparency area, which is available over here: [https://www.gob.mx/contratacionesabiertas](https://www.gob.mx/contratacionesabiertas)
