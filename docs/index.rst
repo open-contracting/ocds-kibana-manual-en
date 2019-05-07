@@ -7,7 +7,7 @@ Education, and Research (PODER) <https://www.projectpoder.org/es>`_, `Open Data 
 Introduction
 ------------
 
-Open Contracting Partnership informs in September 2017 that 13 countries in Latin American and the Caribbean (Argentina, Chile, Colombia, Costa Rica, Guadalupe, Guatemala, Honduras, Martinique, Mexico, Panama, Paraguay, Dominican Republic and Uruguay) are active. This means that these countries are using the open contracting data standard, they are committed to implement it and/or have some innovation in the monitoring of public contracting.
+Open Contracting Partnership informs in September 2017 that 13 countries in Latin American and the Caribbean (Argentina, Chile, Colombia, Costa Rica, Guadalupe, Guatemala, Honduras, Martinique, Mexico, Panama, Paraguay, Dominican Republic and Uruguay) are active. This means that these countries are using the open contracting data standard, they are committed to implement it and/or have some innovation in the monitoring of public contracting (`Updated listing <https://www.open-contracting.org/why-open-contracting/worldwide/#/>`_).
 
 This guide has been created to increase the use and impact of data publication, import OCDS and analyze them visually and intuitively. Although all the examples are based on the Mexican case, we provide you with instructions to import any dataset that meets OCDS standard.
 
