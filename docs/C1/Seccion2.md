@@ -1,6 +1,9 @@
-Even though most of this manual's information can be used to analyze any data set, our efforts concentrate on analyzing Open Contracting Data published by the Ministry of Finance and Public Credit.
+# Open Contracting Data
 
-## Open Contracting Data
+```{note}
+Even though most of this manual's information can be used to analyze any data set, our efforts concentrate on analyzing Open Contracting Data published by the Ministry of Finance and Public Credit.
+```
+
 Open Contracting Data has existed for many years in Mexico. Our records are available at the [CompraNet web page](http://compranet.funcionpublica.gob.mx/), which has an Excel file with information since 2002. This data has been analyzed thoroughly throughout time, and is available in a variety of civic tech that makes it simpler to evaluate. These are some that are currently accessible:
 * [QuienEsQuienWiki](https://www.quienesquien.wiki)
 * [ContratoBook](http://contratobook.org/#/contratos)

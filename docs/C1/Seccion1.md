@@ -1,4 +1,4 @@
-## An Introduction to the Open Contracting Data Standard
+# An Introduction to the Open Contracting Data Standard
 
 > *This introduction has been taken from the chapter [An introduction to the Open Contracting Data Standard](https://github.com/rparrapy/ocds-r-manual/blob/master/manual.Rmd#an-introduction-to-the-open-contracting-data-standard) of the Manual [Analyzing Open Contracting data using the R programming language](https://github.com/rparrapy/ocds-r-manual/blob/master/manual.Rmd) by [Rodrigo Parra](https://github.com/rparrapy)*
 
@@ -8,7 +8,7 @@ The data standard, designed and developed through an open process by [Open Contr
 
 The intention of this section is to introduce the reader to the standard, the use cases it was designed for and the basic concepts needed to apply it. Most of the content was taken from the official documentation of the standard; for a more thorough introductory walktrough, please refer to the [OCP getting started guide](http://standard.open-contracting.org/latest/en/getting_started/).
 
-### Users and use cases
+## Users and use cases
 
 The standard was designed with four main groups of user needs:
 
@@ -24,7 +24,7 @@ To find out about who is using OCDS-compliant data around the globe and how they
 * Biddings: allow private firms to understand the potential pipeline of procurement opportunities by looking at information related to past and current procurements.
 * Monitoring Service Delivery: helping interested actors to track procurement processes for monitoring purposes, linking budgets and donor data to the contracts and results.
 
-### The contracting process
+## The contracting process
 
 The standard defines a contracting process as:
 
@@ -34,7 +34,7 @@ The standard covers all the stages of a contracting process, even though some pr
 
 
 
-### Documents
+## Documents
 
 Contracting processes are represented as **documents** in OCDS. Each document is made up of several **sections**, mentioned below:
 
@@ -48,7 +48,7 @@ Contracting processes are represented as **documents** in OCDS. Each document is
 
 An example JSON snippet compliant with this structure looks as follows:
 
-```{json}
+```json
 {
    "language": "en",
    "ocid": "contracting-process-identifier",
@@ -73,13 +73,13 @@ There are two types of documents defined in the standard:
 
 * **Records** are snapshots of the current state of a contracting process. A record should be updated every time a new release associated to its contracting process is published; hence, there should only be a single record per contracting process.
 
-### Fields
+## Fields
 
 Each section may contain several **fields** specified in the standard, which are used to represent data. These objects can appear several times in different sections of the same document; for example, items can occur in tender (to indicate the items that a buyer wishes to buy), in an award object (to indicate the items that an award has been made for) and in a contract object (to indicate the items listed in the contract). Some example fields, accompanied by corresponding JSON snippets, are presented below.
 
-#### Parties (Organizations)
+### Parties (Organizations)
 
-```{json, eval=FALSE}
+```json
 {
     "address": {
         "countryName": "United Kingdom",
@@ -103,22 +103,22 @@ Each section may contain several **fields** specified in the standard, which are
         "uri": "http://www.barnet.gov.uk/"
     },
     "name": "London Borough of Barnet",
-    "roles": [ ... ]
+    "roles": [ ]
 }
 ```
 
-#### Amounts
+### Amounts
 
-```{json, eval=FALSE}
+```json
 {
     "amount": 11000000,
     "currency": "GBP"
 }
 ```
 
-#### Items
+### Items
 
-```{json, eval=FALSE}
+```json
 {
     "additionalClassifications": [
        {
@@ -147,18 +147,18 @@ Each section may contain several **fields** specified in the standard, which are
 }
 ```
 
-#### Time periods
+### Time periods
 
-```{json, eval=FALSE}
+```json
 {
     "endDate": "2011-08-01T23:59:00Z",
     "startDate": "2010-07-01T00:00:00Z"
 }
 ```
 
-#### Documents
+### Documents
 
-```{json, eval=FALSE}
+```json
 {
     "datePublished": "2010-05-10T10:30:00Z",
     "description": "Award of contract to build new cycle lanes to AnyCorp Ltd.",
@@ -171,9 +171,9 @@ Each section may contain several **fields** specified in the standard, which are
 }
 ```
 
-#### Milestones
+### Milestones
 
-```{json, eval=FALSE}
+```json
 {
     "description": "A consultation period is open for citizen input.",
     "dueDate": "2015-04-15T17:00:00Z",
@@ -183,7 +183,7 @@ Each section may contain several **fields** specified in the standard, which are
 ```
 
 
-### Extensions and codelists
+## Extensions and codelists
 
 In addition to regular fields, the OCDS schema defines some fields that can only be used in certain sections, e.g. *titles* and *descriptions* of tenders, awards and contracts. In some cases, publishers may require fields that are not provided by the core schema; an **extension** allows defining new fields that can be used in these cases. A list of available extensions is available [here](http://standard.open-contracting.org/latest/en/extensions); if no existing extension addresses a publisher's needs, the publisher is encouraged to collaborate on the creation of a new community extension.
 

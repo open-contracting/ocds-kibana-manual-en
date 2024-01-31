@@ -44,6 +44,16 @@ ELK platform has a linear architecture.
 
 Have a closer look at each tool:
 
-- [ElasticSearch](/en/latest/C2/Seccion1/1_ElasticSearch.html)
-- [Logstash](/en/latest/C2/Seccion1/2_Logstash.html)
-- [Kibana](/en/latest/C2/Seccion1/3_Kibana.html)
+- [ElasticSearch](Seccion1/1_ElasticSearch)
+- [Logstash](Seccion1/2_Logstash)
+- [Kibana](Seccion1/3_Kibana)
+
+
+```{toctree}
+:hidden: true
+
+Seccion1/1_ElasticSearch
+Seccion1/2_Logstash
+Seccion1/3_Kibana
+Extra
+```

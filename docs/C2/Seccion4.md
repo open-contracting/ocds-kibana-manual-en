@@ -4,9 +4,9 @@ Now that the platform is up and running, we can look in depth into the collectio
 
 **IMPORTANT:** Everything we will mention next is implemented in the code as a part of Docker containers. It is not necessary to repeat these steps, we just mention this here for a better understanding of the process.
 
-# Preparing OCDS data in packages
+## Preparing OCDS data in packages
 
-## Available and required format
+### Available and required format
 
 The file obtained from gob.mx is in format [Record Package](http://standard.open-contracting.org/latest/en/schema/record_package/)
 
@@ -56,7 +56,7 @@ is an OCDS document.
 
 In this manner, we can process it with Logstash and later send one document at a time to ElasticSearch.
 
-## Converting the format with `jq` tool
+### Converting the format with `jq` tool
 
 An open source and MIT license tool is available to work with JSON files: [jq](https://stedolan.github.io/jq/).
 
@@ -75,7 +75,7 @@ jq
     "file.json" = File to be read
     "file.ocds_per_line" = The file created as a result
 ```
-### Jq filter and data structure
+#### Jq filter and data structure
 
 The filter is the most important part of this command. We must review carefully the data structure introduced in the original file in order to understand it.
 ```
@@ -103,9 +103,9 @@ Putting all instructions together, and in jq filter note, we should get: `.[].re
 The files created by this command are compatible with Logstash. Now, we will continue with the pipeline creation, but first we should review some important concepts.
 
 
-# Basic Concepts for Logstash Pipelines
+## Basic Concepts for Logstash Pipelines
 
-## Syntax
+### Syntax
 
 Logstash Pipelines definitions use a similar language to simplified programming code blocks.
 
@@ -138,7 +138,7 @@ We may have different types of option values:
 
 In the file [pipeline.conf](https://github.com/ProjectPODER/ManualKibanaOCDS/blob/master/pipeline/pipeline.conf), we can find the already designed pipeline for this dataset; let's check each of the blocks composing it.
 
-# Input
+### Input
 
 This component indicates Logstash where and how to read the original data.
 
@@ -151,7 +151,7 @@ input {
 ```
 For this pipeline, we have decided to read the file from the program standard input. Each line received will be treated as a JSON document and stored in memory for the following step.
 
-# Transformation (filter)
+### Transformation (filter)
 
 This block indicates Logstash what to do with each of the records read from Input module.
 
@@ -172,7 +172,7 @@ This could be the Pipeline's most complicated process, and also the most interes
 
 This block is composed by a set of filters that behave sequentially. In this case, we will just use a filter: Ruby
 
-### [Ruby Filter](https://www.elastic.co/guide/en/logstash/current/plugins-filters-ruby.html)
+#### [Ruby Filter](https://www.elastic.co/guide/en/logstash/current/plugins-filters-ruby.html)
 
 > This filter is more advanced and requires Ruby knowledge.
 
@@ -204,7 +204,7 @@ It would be transformed as:
 ```
 Finally, the `compiledRelease` property is removed; in the same way as  `releases`, `host` and `path`.
 
-# Output
+### Output
 
 This section indicates Logstash what to do with the new documents. In our case, we want the results to be sent to ElasticSearch.
 
