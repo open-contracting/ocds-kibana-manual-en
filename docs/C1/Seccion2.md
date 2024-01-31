@@ -14,9 +14,9 @@ Furthermore, it is worth noting the effort made by [Open Contracting Partnership
 
 ## OCDS Data in Latin America and the rest of the world
 
-Along with Mexico, several more countries in Latin America and the rest of the world have OCDS datasets, the Open Contracting Partnership mantains a full list, updated quarterly, of [OCDS Publishers](https://www.open-contracting.org/why-open-contracting/worldwide/#/).
+Along with Mexico, several more countries in Latin America and the rest of the world have OCDS datasets, the Open Contracting Partnership mantains a full list of [OCDS Publishers](https://data.open-contracting.org/).
 
-Also the [OCDS Kingfisher tool](https://ocdskingfisher.readthedocs.io/en/master/index.html) allows for downloading them and importing them into a database.
+Also, [OCDS Kingfisher Collect](https://kingfisher-collect.readthedocs.io) allows for downloading them and importing them into a database.
 
 ## Data for this manual
 As we have mentioned in the previous section, we will be using data published by the Ministry of Finance and Public Credit's Budget Transparency area, which is available over here: [https://www.gob.mx/contratacionesabiertas](https://www.gob.mx/contratacionesabiertas)
