@@ -83,7 +83,7 @@ Line charts allow us to show the evolution over time. In this occasion, we will 
 
 If we clicked play now, the graph would just have the green line, and the blue one would be near 0 as the values between them are very different. To get a relevant graph, we need to create a second axis. o do this, click *Metrics & Axes* (the dropdown menu located to the left of play button) and in "Value Axis" dropdown menu, choose "New Axis". This will create a new axis we can edit in the following **Y-Axis** box.
 
-If we observe the graphic, we can notice it ends in 2020, when we are still in 2018. We can add a filter to the data in order to amend this, as we do in [Discover](https://manualkibanaocds.readthedocs.io/es/latest/C3/Seccion2.html).
+If we observe the graphic, we can notice it ends in 2020, when we are still in 2018. We can add a filter to the data in order to amend this, as we do in [Discover](Seccion2).
 
 ## Other graphs available
 
